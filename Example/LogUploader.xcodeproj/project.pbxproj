@@ -215,9 +215,11 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = MNQ23648JA;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = MNQ23648JA;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -497,12 +499,16 @@
 			baseConfigurationReference = DFFA94DF1B66ECEE58DA34E1 /* Pods-LogUploader_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MNQ23648JA;
 				INFOPLIST_FILE = LogUploader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -513,12 +519,15 @@
 			baseConfigurationReference = 5270462F1ECF3AD9FE756CE9 /* Pods-LogUploader_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MNQ23648JA;
 				INFOPLIST_FILE = LogUploader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -528,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2D41E8317A1C54A214AC15E /* Pods-LogUploader_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = MNQ23648JA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -549,6 +559,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46AD553D57FC3A8A980A563A /* Pods-LogUploader_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = MNQ23648JA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

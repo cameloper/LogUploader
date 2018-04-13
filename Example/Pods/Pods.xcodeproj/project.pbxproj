@@ -91,6 +91,7 @@
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8BEEC56F8CCC5A24274B318733DE7A05 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECDEE9D6AFAF49739898A8175FE151 /* DevFilter.swift */; };
 		8C73C5662081049800FA3AD4 /* Log Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C73C5652081049800FA3AD4 /* Log Struct.swift */; };
+		8C73C56A208105EB00FA3AD4 /* Struct Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C73C569208105EB00FA3AD4 /* Struct Destination.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
 		8EABCFE132743EA0C2901147FE901328 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FD03555F02259AF320928562F93855 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD7DC8D216421EE213C56BA78E286BB /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820055A424559F6754FA38E439CECEE /* QCKDSL.m */; };
@@ -373,6 +374,7 @@
 		8AB1F05851CDF4A41EDD1DF45E43A0C3 /* XcodeColorsLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XcodeColorsLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/XcodeColorsLogFormatter.swift; sourceTree = "<group>"; };
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8C73C5652081049800FA3AD4 /* Log Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Log Struct.swift"; path = "LogUploader/Classes/Log Struct.swift"; sourceTree = "<group>"; };
+		8C73C569208105EB00FA3AD4 /* Struct Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Struct Destination.swift"; path = "LogUploader/Classes/Struct Destination.swift"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
 		8F1C117E9318932BDE8ABCC384EA7979 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
 		8FB11291D74293F4C4E4386AB186DB28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -765,6 +767,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		8C73C568208105C500FA3AD4 /* Destinations */ = {
+			isa = PBXGroup;
+			children = (
+				8C73C569208105EB00FA3AD4 /* Struct Destination.swift */,
+			);
+			name = Destinations;
+			sourceTree = "<group>";
+		};
 		9D22753C9C49E4FE6009991286B9CE9D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +963,7 @@
 		EC062419FE3DAA86C2764DB0BD05473B /* LogUploader */ = {
 			isa = PBXGroup;
 			children = (
+				8C73C568208105C500FA3AD4 /* Destinations */,
 				8C73C5652081049800FA3AD4 /* Log Struct.swift */,
 				EA481AF7E0920E4ACC186867FF4C5B92 /* ReplaceMe.swift */,
 				5932BBE2050812ACDB0D061360C42132 /* Pod */,
@@ -1387,6 +1398,7 @@
 			files = (
 				8C73C5662081049800FA3AD4 /* Log Struct.swift in Sources */,
 				EEBE8D91A54370241EBF8E08EBF9E419 /* LogUploader-dummy.m in Sources */,
+				8C73C56A208105EB00FA3AD4 /* Struct Destination.swift in Sources */,
 				491D6F4E94D0E71292122E9DD94F4A44 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
