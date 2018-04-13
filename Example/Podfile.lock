@@ -1,0 +1,27 @@
+PODS:
+  - LogUploader (0.1.0)
+  - Nimble (7.0.3)
+  - Quick (1.2.0)
+
+DEPENDENCIES:
+  - LogUploader (from `../`)
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  LogUploader:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LogUploader: d345f25654a5ca29915c861537c4fc7568b5b4e5
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+
+PODFILE CHECKSUM: 03887d7d6220a72679ca6b397ff908d579dc8a4e
+
+COCOAPODS: 1.5.0

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'LogUploader'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of LogUploader.'
+  s.summary          = 'Upload your XCGLogger logs to your own server easily!'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,18 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+LogUploader helps you upload all your app logs whenever you want to your own server. Without any limitations or costs.
+
+It uses XCGLogger which you can configure in minutes and saves all the logs in a file format you want. Then uploads your logs to your server. Adding an uploadable destination is even easier than setting up XCGLogger.
+
+Visit GitHub page for tutorial and examples.
                        DESC
 
-  s.homepage         = 'https://github.com/Ihsan B. Yilmaz/LogUploader'
+  s.homepage         = 'https://github.com/EXXETA/LogUploader'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ihsan B. Yilmaz' => 'Ihsan.Yilmaz@EXXETA.com' }
-  s.source           = { :git => 'https://github.com/Ihsan B. Yilmaz/LogUploader.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/EXXETA/LogUploader.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -38,5 +42,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'XCGLogger', '~> 6.0.2'
+  s.dependency 'Alamofire', '~> 4.7'
 end

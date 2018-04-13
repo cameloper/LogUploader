@@ -1,0 +1,6 @@
+framework module LogUploader {
+  umbrella header "LogUploader-umbrella.h"
+
+  export *
+  module * { export * }
+}

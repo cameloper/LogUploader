@@ -1,0 +1,6 @@
+framework module Pods_LogUploader_Tests {
+  umbrella header "Pods-LogUploader_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

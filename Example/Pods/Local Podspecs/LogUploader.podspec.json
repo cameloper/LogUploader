@@ -1,0 +1,22 @@
+{
+  "name": "LogUploader",
+  "version": "0.1.0",
+  "summary": "A short description of LogUploader.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Ihsan B. Yilmaz/LogUploader",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Ihsan B. Yilmaz": "Ihsan.Yilmaz@EXXETA.com"
+  },
+  "source": {
+    "git": "https://github.com/Ihsan B. Yilmaz/LogUploader.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LogUploader/Classes/**/*"
+}
