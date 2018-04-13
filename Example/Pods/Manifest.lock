@@ -1,7 +1,17 @@
 PODS:
-  - LogUploader (0.1.0)
+  - Alamofire (4.7.1)
+  - LogUploader (0.1.0):
+    - Alamofire (~> 4.7)
+    - XCGLogger (~> 6.0.2)
   - Nimble (7.0.3)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - Quick (1.2.0)
+  - XCGLogger (6.0.2):
+    - XCGLogger/Core (= 6.0.2)
+  - XCGLogger/Core (6.0.2):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
   - LogUploader (from `../`)
@@ -10,17 +20,23 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
     - Nimble
+    - ObjcExceptionBridging
     - Quick
+    - XCGLogger
 
 EXTERNAL SOURCES:
   LogUploader:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LogUploader: d345f25654a5ca29915c861537c4fc7568b5b4e5
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  LogUploader: 60953597b48d332a83ceb2b64018107f4d9901a3
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
 PODFILE CHECKSUM: 03887d7d6220a72679ca6b397ff908d579dc8a4e
 

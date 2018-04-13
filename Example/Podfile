@@ -2,8 +2,6 @@ use_frameworks!
 
 target 'LogUploader_Example' do
   pod 'LogUploader', :path => '../'
-  pod 'XCGLogger'
-  pod 'Alamofire'
 
   target 'LogUploader_Tests' do
     inherit! :search_paths
