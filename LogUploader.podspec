@@ -44,5 +44,5 @@ Visit GitHub page for tutorial and examples.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'XCGLogger', '~> 6.0.2'
-  s.dependency 'Alamofire', '~> 4.7'
+  s.dependency 'Alamofire', '~> 4.7.2'
 end

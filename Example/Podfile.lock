@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (4.7.1)
+  - Alamofire (4.7.2)
   - LogUploader (0.1.0):
-    - Alamofire (~> 4.7)
+    - Alamofire (~> 4.7.2)
     - XCGLogger (~> 6.0.2)
   - Nimble (7.0.3)
   - ObjcExceptionBridging (1.0.1):
@@ -31,8 +31,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
-  LogUploader: 60953597b48d332a83ceb2b64018107f4d9901a3
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  LogUploader: 348bc21ff38be4621ca167f54954f64b312cf194
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
