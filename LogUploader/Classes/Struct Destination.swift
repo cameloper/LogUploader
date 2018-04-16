@@ -155,7 +155,8 @@ open class StructDestination: DestinationProtocol {
         precondition(false, "Must override this")
     }
     
-    /// Converts the logDetails object to codable Log struct
+    /// Converts the logDetails object to codable Log struct.
+    /// Does not include the not-wanted parameters.
     ///
     /// - Parameter logDetails: LogDetails object that will get converted
     /// - Returns: Codable Log struct
@@ -179,19 +180,23 @@ open class StructDestination: DestinationProtocol {
             details.lineNumber = nil
         }
         
+        // Gets current thread name from system
         if showThreadName {
+            // Print just main if it's main thread
             if Thread.isMainThread {
                 details.threadName = "main"
             }
             else {
                 if let threadName = Thread.current.name, !threadName.isEmpty {
-                    details.threadName = "\(threadName)"
+                    // Print thread name if we're in a thread
+                    details.threadName = "T: \(threadName)"
                 }
                 else if let queueName = DispatchQueue.currentQueueLabel, !queueName.isEmpty {
-                    details.threadName = "\(queueName)"
+                    // Print queue name if we're in a DispachQueue
+                    details.threadName = "Q: \(queueName)"
                 }
                 else {
-                    details.threadName = String(format: "%p", Thread.current)
+                    details.threadName = String(format: "T: %p", Thread.current)
                 }
             }
         }

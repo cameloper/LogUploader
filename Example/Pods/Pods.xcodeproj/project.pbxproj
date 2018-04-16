@@ -48,7 +48,6 @@
 		447A2B7B29C4A8F0953E29B639BAA383 /* LogUploader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2552CC68177A7131F9308049ECFD7F36 /* LogUploader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		452743B3C1F49B321AB5EBC6DBC5EF7A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09509F7CEC3DA03A782898E9AAF25D8F /* World.swift */; };
 		45F183320C688F9978649F30ABE21D09 /* MatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5729114783A4DBBB5CE243B1B454E3 /* MatchError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		491D6F4E94D0E71292122E9DD94F4A44 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA481AF7E0920E4ACC186867FF4C5B92 /* ReplaceMe.swift */; };
 		4CDACD8A5A6CFB688838AA988E7D1E43 /* Nimble-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A70A73249CC7DAB399945D7C854974 /* Nimble-dummy.m */; };
 		4DEB684C222112039D54DDE6778F0A4C /* QuickConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B4311270A1CCCDD12A5908B9FAA08 /* QuickConfiguration.m */; };
 		4FABBF5CA8F735F48035BE4144613CB7 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22690974E3D3701DEDAD7C581B07CBCD /* Expression.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -90,7 +89,12 @@
 		89C7D3224BDBF47EA4B18F578CA67FF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13DBF275E4606764BEE6C2DA77A9F1F /* Foundation.framework */; };
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8BEEC56F8CCC5A24274B318733DE7A05 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECDEE9D6AFAF49739898A8175FE151 /* DevFilter.swift */; };
-		8C73C5662081049800FA3AD4 /* Log Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C73C5652081049800FA3AD4 /* Log Struct.swift */; };
+		8C5B94A52084D30C00277AE4 /* CustomFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94A42084D30C00277AE4 /* CustomFileDestination.swift */; };
+		8C5B94A72084D57200277AE4 /* LogUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94A62084D57200277AE4 /* LogUploader.swift */; };
+		8C5B94A92084D5B600277AE4 /* LogUploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94A82084D5B600277AE4 /* LogUploadResult.swift */; };
+		8C5B94AB2084D5D700277AE4 /* LogUploadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94AA2084D5D700277AE4 /* LogUploadError.swift */; };
+		8C5B94AD2084D8FC00277AE4 /* DefaultLogUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94AC2084D8FC00277AE4 /* DefaultLogUploader.swift */; };
+		8C5B94B02084DA5300277AE4 /* Log Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B94AF2084DA5300277AE4 /* Log Struct.swift */; };
 		8C73C56A208105EB00FA3AD4 /* Struct Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C73C569208105EB00FA3AD4 /* Struct Destination.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
 		8EABCFE132743EA0C2901147FE901328 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FD03555F02259AF320928562F93855 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -373,7 +377,12 @@
 		8A5F76042A6BA466269B4FC34C35BC8B /* Contain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Contain.swift; path = Sources/Nimble/Matchers/Contain.swift; sourceTree = "<group>"; };
 		8AB1F05851CDF4A41EDD1DF45E43A0C3 /* XcodeColorsLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XcodeColorsLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/XcodeColorsLogFormatter.swift; sourceTree = "<group>"; };
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
-		8C73C5652081049800FA3AD4 /* Log Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Log Struct.swift"; path = "LogUploader/Classes/Log Struct.swift"; sourceTree = "<group>"; };
+		8C5B94A42084D30C00277AE4 /* CustomFileDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomFileDestination.swift; path = LogUploader/Classes/CustomFileDestination.swift; sourceTree = "<group>"; };
+		8C5B94A62084D57200277AE4 /* LogUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogUploader.swift; path = LogUploader/Classes/LogUploader.swift; sourceTree = "<group>"; };
+		8C5B94A82084D5B600277AE4 /* LogUploadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogUploadResult.swift; path = LogUploader/Classes/LogUploadResult.swift; sourceTree = "<group>"; };
+		8C5B94AA2084D5D700277AE4 /* LogUploadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogUploadError.swift; path = LogUploader/Classes/LogUploadError.swift; sourceTree = "<group>"; };
+		8C5B94AC2084D8FC00277AE4 /* DefaultLogUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultLogUploader.swift; path = LogUploader/Classes/DefaultLogUploader.swift; sourceTree = "<group>"; };
+		8C5B94AF2084DA5300277AE4 /* Log Struct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Log Struct.swift"; path = "LogUploader/Classes/Log Struct.swift"; sourceTree = "<group>"; };
 		8C73C569208105EB00FA3AD4 /* Struct Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Struct Destination.swift"; path = "LogUploader/Classes/Struct Destination.swift"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
 		8F1C117E9318932BDE8ABCC384EA7979 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
@@ -460,7 +469,6 @@
 		E473C808C50414F39EC82C07934750C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4EC3DD2762D252B32803538542238CD /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		E6F82D1A79E7B926E634E9641D04E8F0 /* ObjectiveCMarker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ObjectiveCMarker.m; path = Sources/ObjcExceptionBridging/ObjectiveCMarker.m; sourceTree = "<group>"; };
-		EA481AF7E0920E4ACC186867FF4C5B92 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = LogUploader/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		EAF51678E94984B876ED7536B9996824 /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCGLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7378EC9AD19DB8514444E376C87B3F /* XCGLogger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XCGLogger-prefix.pch"; sourceTree = "<group>"; };
 		EF62CFAE15DB27F96BC17BD0E68889CC /* MatcherProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherProtocols.swift; path = Sources/Nimble/Matchers/MatcherProtocols.swift; sourceTree = "<group>"; };
@@ -767,10 +775,30 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		8C5B94A12084D2C700277AE4 /* Uploader */ = {
+			isa = PBXGroup;
+			children = (
+				8C5B94A62084D57200277AE4 /* LogUploader.swift */,
+				8C5B94AC2084D8FC00277AE4 /* DefaultLogUploader.swift */,
+			);
+			name = Uploader;
+			sourceTree = "<group>";
+		};
+		8C5B94AE2084D94D00277AE4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8C5B94AF2084DA5300277AE4 /* Log Struct.swift */,
+				8C5B94A82084D5B600277AE4 /* LogUploadResult.swift */,
+				8C5B94AA2084D5D700277AE4 /* LogUploadError.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		8C73C568208105C500FA3AD4 /* Destinations */ = {
 			isa = PBXGroup;
 			children = (
 				8C73C569208105EB00FA3AD4 /* Struct Destination.swift */,
+				8C5B94A42084D30C00277AE4 /* CustomFileDestination.swift */,
 			);
 			name = Destinations;
 			sourceTree = "<group>";
@@ -963,9 +991,9 @@
 		EC062419FE3DAA86C2764DB0BD05473B /* LogUploader */ = {
 			isa = PBXGroup;
 			children = (
+				8C5B94AE2084D94D00277AE4 /* Helpers */,
+				8C5B94A12084D2C700277AE4 /* Uploader */,
 				8C73C568208105C500FA3AD4 /* Destinations */,
-				8C73C5652081049800FA3AD4 /* Log Struct.swift */,
-				EA481AF7E0920E4ACC186867FF4C5B92 /* ReplaceMe.swift */,
 				5932BBE2050812ACDB0D061360C42132 /* Pod */,
 				212E9398F50D6285CE7B74C4449BD3F8 /* Support Files */,
 			);
@@ -1396,10 +1424,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C73C5662081049800FA3AD4 /* Log Struct.swift in Sources */,
+				8C5B94AB2084D5D700277AE4 /* LogUploadError.swift in Sources */,
+				8C5B94A52084D30C00277AE4 /* CustomFileDestination.swift in Sources */,
+				8C5B94B02084DA5300277AE4 /* Log Struct.swift in Sources */,
+				8C5B94A72084D57200277AE4 /* LogUploader.swift in Sources */,
 				EEBE8D91A54370241EBF8E08EBF9E419 /* LogUploader-dummy.m in Sources */,
 				8C73C56A208105EB00FA3AD4 /* Struct Destination.swift in Sources */,
-				491D6F4E94D0E71292122E9DD94F4A44 /* ReplaceMe.swift in Sources */,
+				8C5B94A92084D5B600277AE4 /* LogUploadResult.swift in Sources */,
+				8C5B94AD2084D8FC00277AE4 /* DefaultLogUploader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
