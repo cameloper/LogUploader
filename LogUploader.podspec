@@ -25,14 +25,15 @@ It uses XCGLogger which you can configure in minutes and saves all the logs in a
 Visit GitHub page for tutorial and examples.
                        DESC
 
-  s.homepage         = 'https://github.com/EXXETA/LogUploader'
+  s.homepage         = 'https://github.com/cameloper/LogUploader'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ihsan B. Yilmaz' => 'Ihsan.Yilmaz@EXXETA.com' }
-  s.source           = { :git => 'https://github.com/EXXETA/LogUploader.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/cameloper/LogUploader.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.swift_version = '4.1'
 
   s.source_files = 'LogUploader/Classes/**/*'
   
