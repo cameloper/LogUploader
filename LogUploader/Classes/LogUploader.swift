@@ -113,10 +113,13 @@ public struct LogUploaderConfiguration {
     /// Boolean that decides if the successful log uploads should be
     /// stored in the device until they get manually deleted.
     /// - default value: `false`
-    var storeSuccessfullUploads: Bool
+    var storeSuccessfulUploads: Bool
     
     public init(requestURL: URL,
                 parameterEncoding: ParameterEncoding = JSONEncoding.default,
+                storeFailedUploads: Bool = true,
+                autoRetryFailedUploads: Bool = true,
+                storeSuccessfulUploads: Bool = false,
                 headerHandler headers: (() -> [String: String])? = nil) {
         
         self.requestURL = requestURL
@@ -135,6 +138,9 @@ public struct LogUploaderConfiguration {
                            "appBuildVersion": buildNumber]
         
         self.parameterEncoding = parameterEncoding
+        self.storeFailedUploads = storeFailedUploads
+        self.autoRetryFailedUploads = autoRetryFailedUploads
+        self.storeSuccessfulUploads = storeSuccessfulUploads
         self.headers = headers
         
     }
