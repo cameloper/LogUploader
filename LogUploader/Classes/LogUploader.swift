@@ -96,11 +96,24 @@ public struct LogUploaderConfiguration {
     ///     - Logs
     var parameters: [String: Any]
     /// Encoding type for the POST parameters.
-    /// - default value: JSON
+    /// - default value: `JSON`
     var parameterEncoding: ParameterEncoding
     /// Closure that must return required headers for the POST request.
     /// i.e. Authentication tokens that change everytime.
     var headers: (() -> [String: String])?
+    /// Boolean that decides if the failed log uploads should be stored
+    /// in the device until they get successfuly uploaded.
+    /// - default value: `true`
+    var storeFailedUploads: Bool
+    /// Boolean that decides if the failed and stored uploads should be
+    /// automatically retried to upload.
+    /// - precondition: `storeFailedUploads == true`
+    /// - default value: `true`
+    var autoRetryFailedUploads: Bool
+    /// Boolean that decides if the successful log uploads should be
+    /// stored in the device until they get manually deleted.
+    /// - default value: `false`
+    var storeSuccessfullUploads: Bool
     
     public init(requestURL: URL,
                 parameterEncoding: ParameterEncoding = JSONEncoding.default,
