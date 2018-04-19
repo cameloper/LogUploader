@@ -71,7 +71,7 @@ extension XCGLogger {
             return
         }
         
-        let uploader = DefaultLogUploader()
+        let uploader = conf.uploader
         
         // Then upload the logs and log the result to the owner
         uploader.upload(from: destination) { result in
@@ -137,7 +137,7 @@ public struct LogUploadConfiguration {
 /// Struct that stores all the required parameters etc. for the networking of uploader
 public struct LogUploaderConfiguration {
     /// Identifier of the uploader that will be used for the operation.
-    var uploaderId: String
+    var uploader: LogUploader
     /// Upload configuration that will be used to generate a valid
     /// HTTP POST request.
     var uploadConf: LogUploadConfiguration
@@ -155,13 +155,13 @@ public struct LogUploaderConfiguration {
     /// - default value: `false`
     var storeSuccessfulUploads: Bool
     
-    public init(uploaderId: String,
+    public init(uploader: LogUploader,
                 uploadConf: LogUploadConfiguration,
                 storeFailedUploads: Bool = true,
                 autoRetryFailedUploads: Bool = true,
                 storeSuccessfulUploads: Bool = false) {
         
-        self.uploaderId = uploaderId
+        self.uploader = uploader
         self.uploadConf = uploadConf
         self.storeFailedUploads = storeFailedUploads
         self.autoRetryFailedUploads = autoRetryFailedUploads
