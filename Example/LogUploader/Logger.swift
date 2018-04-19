@@ -19,7 +19,8 @@ let log: XCGLogger = {
     
     let requestUrl = URL(string: "http://localhost:8080/")
     
-    let conf = LogUploaderConfiguration(requestURL: requestUrl!)
+    let conf = LogUploaderConfiguration(uploaderId: "",
+                                        uploadConf: LogUploadConfiguration(requestURL: requestUrl!))
     let jsonDestination = JSONDestination(owner: log, fileURL: logFileURL, identifier: "logger.jsonLogger", uploaderConf: conf)
     
     jsonDestination.showDate = true

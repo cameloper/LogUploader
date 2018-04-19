@@ -48,7 +48,7 @@ public struct DefaultLogUploader: LogUploader {
     
     /// Generates the URL Request for Alamofire
     public func generateUrlRequest(fileUrl: URL, conf: LogUploaderConfiguration) throws -> URLRequest {
-        var conf = conf
+        var conf = conf.uploadConf
         
         // Get the log file as data to append it in parameters
         let logFileData = try Data(contentsOf: fileUrl).base64EncodedString()

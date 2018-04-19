@@ -59,12 +59,19 @@ extension XCGLogger {
     ///     - destinationId: Used to get the 'CustomFileDestination' object from logger
     ///     - uploader: The initialized object which conforms to protocol LogUploader. It will be used to upload the logs
     ///     - completion: Returns the result of upload operation. Use to handle errors etc.
-    public func uploadLogs(from destinationId: String, uploader: LogUploader = DefaultLogUploader(), completion: LogUploadCompletion?) {
+    public func uploadLogs(from destinationId: String, completion: LogUploadCompletion?) {
         // First get the destination object from logger
         guard let destination = self.destination(withIdentifier: destinationId) as? CustomFileDestination else {
             completion?(.failure(.missingDestination))
             return
         }
+        
+        guard let conf = destination.uploaderConfiguration else {
+            completion?(.failure(.missingConfiguration))
+            return
+        }
+        
+        let uploader = DefaultLogUploader()
         
         // Then upload the logs and log the result to the owner
         uploader.upload(from: destination) { result in
@@ -79,8 +86,7 @@ extension XCGLogger {
     }
 }
 
-/// Struct that stores all the required parameters etc. for the networking of uploader
-public struct LogUploaderConfiguration {
+public struct LogUploadConfiguration {
     /// The URL for the POST request
     var requestURL: URL
     /// Request parameters about device/system/app.
@@ -101,24 +107,9 @@ public struct LogUploaderConfiguration {
     /// Closure that must return required headers for the POST request.
     /// i.e. Authentication tokens that change everytime.
     var headers: (() -> [String: String])?
-    /// Boolean that decides if the failed log uploads should be stored
-    /// in the device until they get successfuly uploaded.
-    /// - default value: `true`
-    var storeFailedUploads: Bool
-    /// Boolean that decides if the failed and stored uploads should be
-    /// automatically retried to upload.
-    /// - precondition: `storeFailedUploads == true`
-    /// - default value: `true`
-    var autoRetryFailedUploads: Bool
-    /// Boolean that decides if the successful log uploads should be
-    /// stored in the device until they get manually deleted.
-    /// - default value: `false`
-    var storeSuccessfulUploads: Bool
     
     public init(requestURL: URL,
                 parameterEncoding: ParameterEncoding = JSONEncoding.default,
-                storeFailedUploads: Bool = true,
-                autoRetryFailedUploads: Bool = true,
                 storeSuccessfulUploads: Bool = false,
                 headerHandler headers: (() -> [String: String])? = nil) {
         
@@ -138,10 +129,43 @@ public struct LogUploaderConfiguration {
                            "appBuildVersion": buildNumber]
         
         self.parameterEncoding = parameterEncoding
+        self.headers = headers
+        
+    }
+}
+
+/// Struct that stores all the required parameters etc. for the networking of uploader
+public struct LogUploaderConfiguration {
+    /// Identifier of the uploader that will be used for the operation.
+    var uploaderId: String
+    /// Upload configuration that will be used to generate a valid
+    /// HTTP POST request.
+    var uploadConf: LogUploadConfiguration
+    /// Boolean that decides if the failed log uploads should be stored
+    /// in the device until they get successfuly uploaded.
+    /// - default value: `true`
+    var storeFailedUploads: Bool
+    /// Boolean that decides if the failed and stored uploads should be
+    /// automatically retried to upload after next successful upload.
+    /// - precondition: `storeFailedUploads == true`
+    /// - default value: `true`
+    var autoRetryFailedUploads: Bool
+    /// Boolean that decides if the successful log uploads should be
+    /// stored in the device until they get manually deleted.
+    /// - default value: `false`
+    var storeSuccessfulUploads: Bool
+    
+    public init(uploaderId: String,
+                uploadConf: LogUploadConfiguration,
+                storeFailedUploads: Bool = true,
+                autoRetryFailedUploads: Bool = true,
+                storeSuccessfulUploads: Bool = false) {
+        
+        self.uploaderId = uploaderId
+        self.uploadConf = uploadConf
         self.storeFailedUploads = storeFailedUploads
         self.autoRetryFailedUploads = autoRetryFailedUploads
         self.storeSuccessfulUploads = storeSuccessfulUploads
-        self.headers = headers
         
     }
     
