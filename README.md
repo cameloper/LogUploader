@@ -2,7 +2,7 @@
 
 Still under construction :)
 <!---->
-<!--[![CI Status](http://img.shields.io/travis/Ihsan B. Yilmaz/LogUploader.svg?style=flat)](https://travis-ci.org/Ihsan B. Yilmaz/LogUploader)-->
+[![CI Status](http://img.shields.io/travis/cameloper/LogUploader.svg?style=flat)](https://travis-ci.org/cameloper/LogUploader)
 <!--[![Version](https://img.shields.io/cocoapods/v/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
 <!--[![License](https://img.shields.io/cocoapods/l/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
 <!--[![Platform](https://img.shields.io/cocoapods/p/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
