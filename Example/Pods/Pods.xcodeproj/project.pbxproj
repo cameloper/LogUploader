@@ -98,6 +98,7 @@
 		89C7D3224BDBF47EA4B18F578CA67FF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13DBF275E4606764BEE6C2DA77A9F1F /* Foundation.framework */; };
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8C0D9CAACB2DE376E5B590A692E922DC /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F38C18B03A46248BE8F0347CB58DF1 /* BaseDestination.swift */; };
+		8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */; };
 		8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
 		8EABCFE132743EA0C2901147FE901328 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FD03555F02259AF320928562F93855 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -385,6 +386,7 @@
 		8AB1F05851CDF4A41EDD1DF45E43A0C3 /* XcodeColorsLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XcodeColorsLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/XcodeColorsLogFormatter.swift; sourceTree = "<group>"; };
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
+		8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploader Configurations.swift"; path = "LogUploader/Classes/Uploader Configurations.swift"; sourceTree = "<group>"; };
 		8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploder Extensions.swift"; path = "LogUploader/Classes/Uploder Extensions.swift"; sourceTree = "<group>"; };
 		8F1C117E9318932BDE8ABCC384EA7979 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
 		8FB11291D74293F4C4E4386AB186DB28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -575,9 +577,10 @@
 				CFB74512CE7B00621B58D969CED2F530 /* LogUploadError.swift */,
 				DE7CF286FC09E1BB9CC577AFC1B3E36E /* LogUploadResult.swift */,
 				F26258D8721AFC31075C1E1523E71EB8 /* Struct Destination.swift */,
+				8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */,
+				8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */,
 				94EED1E70E85B70EF9A44F90125248E0 /* Pod */,
 				E5F6B16B3E4AD13145E823206B28BCD7 /* Support Files */,
-				8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */,
 			);
 			name = LogUploader;
 			path = ../..;
@@ -1468,6 +1471,7 @@
 				D96E96F4A0EB636876D4D3280A2FD52B /* Log Struct.swift in Sources */,
 				1EBEC5CEFF3ADAA014F1B96872F0A280 /* LogUploader-dummy.m in Sources */,
 				DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader.swift in Sources */,
+				8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */,
 				DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */,
 				E28EC8104A928E4A604C37C8D06B927A /* LogUploadResult.swift in Sources */,
 				8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */,
