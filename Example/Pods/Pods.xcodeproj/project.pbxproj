@@ -98,6 +98,7 @@
 		89C7D3224BDBF47EA4B18F578CA67FF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13DBF275E4606764BEE6C2DA77A9F1F /* Foundation.framework */; };
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8C0D9CAACB2DE376E5B590A692E922DC /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F38C18B03A46248BE8F0347CB58DF1 /* BaseDestination.swift */; };
+		8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
 		8EABCFE132743EA0C2901147FE901328 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FD03555F02259AF320928562F93855 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD7DC8D216421EE213C56BA78E286BB /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820055A424559F6754FA38E439CECEE /* QCKDSL.m */; };
@@ -289,17 +290,17 @@
 		206BEB37422D9AB946A052692AF5B68B /* FilterProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FilterProtocol.swift; path = Sources/XCGLogger/Filters/FilterProtocol.swift; sourceTree = "<group>"; };
 		20B90E46C07DBF88FBD539FD37F5391E /* Equal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Equal.swift; path = Sources/Nimble/Matchers/Equal.swift; sourceTree = "<group>"; };
 		216EEF74BF87F6C27D19415EBB062D95 /* Pods-LogUploader_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LogUploader_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		21C0BE4E659EB4A4280F7AAC4BC411A3 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjcExceptionBridging.framework; path = ObjcExceptionBridging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C0BE4E659EB4A4280F7AAC4BC411A3 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjcExceptionBridging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21ECDEE9D6AFAF49739898A8175FE151 /* DevFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DevFilter.swift; path = Sources/XCGLogger/Filters/DevFilter.swift; sourceTree = "<group>"; };
 		222B2D76CE6198F8EE40E56A7E3A9A49 /* NMBObjCMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBObjCMatcher.swift; path = Sources/Nimble/Adapters/NMBObjCMatcher.swift; sourceTree = "<group>"; };
 		22690974E3D3701DEDAD7C581B07CBCD /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Sources/Nimble/Expression.swift; sourceTree = "<group>"; };
 		245506BBDC8D8F98700E2AA5FFB39DBF /* XCGLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XCGLogger-dummy.m"; sourceTree = "<group>"; };
 		24FD2D16EEC378DB153F562F87243CBF /* BeIdenticalTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeIdenticalTo.swift; path = Sources/Nimble/Matchers/BeIdenticalTo.swift; sourceTree = "<group>"; };
 		25867A968F0981F23F7C0B6C3482DD2D /* Nimble.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nimble.xcconfig; sourceTree = "<group>"; };
-		2731E4FE86283192C0D931E7D9CBF7FC /* LogUploader.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = LogUploader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2731E4FE86283192C0D931E7D9CBF7FC /* LogUploader.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = LogUploader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2A042EDC21166319D266EBAE24E8F425 /* JSONDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONDestination.swift; path = LogUploader/Classes/JSONDestination.swift; sourceTree = "<group>"; };
 		2A7F994380DA07199F6F4CD69073F4C2 /* QuickSpecBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpecBase.h; path = Sources/QuickSpecBase/include/QuickSpecBase.h; sourceTree = "<group>"; };
-		2C85E91555A6C59DB3D2B849FDFC4F2B /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
+		2C85E91555A6C59DB3D2B849FDFC4F2B /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
 		2CB2D1C8A9920B56977727E75C4411DB /* LogFormatterProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogFormatterProtocol.swift; path = Sources/XCGLogger/LogFormatters/LogFormatterProtocol.swift; sourceTree = "<group>"; };
 		2F458F0AE17612E82EB201C656E1B1AA /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		32FD868F2DAE7A520366B56F6C260220 /* QuickSpecBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpecBase.m; path = Sources/QuickSpecBase/QuickSpecBase.m; sourceTree = "<group>"; };
@@ -335,13 +336,13 @@
 		52B825DC3F765CF35C1CDA4DEFA60D38 /* Pods-LogUploader_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		52D0080EA5C05ADFE7D445A44E47E837 /* World+DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "World+DSL.h"; path = "Sources/QuickObjectiveC/DSL/World+DSL.h"; sourceTree = "<group>"; };
 		587BC0D8DE02444FE5031B4B3DD5317D /* HooksPhase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HooksPhase.swift; path = Sources/Quick/Hooks/HooksPhase.swift; sourceTree = "<group>"; };
-		59623D1CFE178C4B75655B3DF6304D39 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		59623D1CFE178C4B75655B3DF6304D39 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5C54DBE63EE2C07BE7FA526477E78D2A /* URL+FileName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+FileName.swift"; path = "Sources/Quick/URL+FileName.swift"; sourceTree = "<group>"; };
 		5C950DE66EBCD21F6E7C50C57E881CDB /* ANSIColorLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ANSIColorLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/ANSIColorLogFormatter.swift; sourceTree = "<group>"; };
 		5D4AE02F07A28621FC9DBFF923F1CB70 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC3D70CF88297AA43A42A032EFAFAD0 /* .swift-version */ = {isa = PBXFileReference; includeInIndex = 1; path = ".swift-version"; sourceTree = "<group>"; };
+		5EC3D70CF88297AA43A42A032EFAFAD0 /* .swift-version */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		5FCC71D09E9FA56CE1611187157799C4 /* QuickTestSuite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickTestSuite.swift; path = Sources/Quick/QuickTestSuite.swift; sourceTree = "<group>"; };
-		60529B8C7D2E7C721E3AD8146869FCEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		60529B8C7D2E7C721E3AD8146869FCEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		60B67A6536EAAB5533AE31583EA9BD6C /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		627CD891A7F02392EDCDFFAA841C0FDB /* LogUploader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LogUploader.modulemap; sourceTree = "<group>"; };
 		63FD03555F02259AF320928562F93855 /* QCKDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QCKDSL.h; path = Sources/QuickObjectiveC/DSL/QCKDSL.h; sourceTree = "<group>"; };
@@ -351,7 +352,7 @@
 		665999DD508696A0648791423D5ED50B /* PostNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostNotification.swift; path = Sources/Nimble/Matchers/PostNotification.swift; sourceTree = "<group>"; };
 		680A26709AC8D3A42F7C7D6AFDEE2655 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A10907A4EDA555A46B2C15747DD8E59 /* QuickConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickConfiguration.h; path = Sources/QuickObjectiveC/Configuration/QuickConfiguration.h; sourceTree = "<group>"; };
-		6AAF7871650AF65F1DA7CE420EDCEE6D /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Quick.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AAF7871650AF65F1DA7CE420EDCEE6D /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0866BEF9ADCF5DBC98D1183A62AEED /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		6B4F5D253F521ECFEA3BF11848BED827 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		6B7E6D2CD3EF3E39021BF804AA3578EC /* ToSucceed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToSucceed.swift; path = Sources/Nimble/Matchers/ToSucceed.swift; sourceTree = "<group>"; };
@@ -362,7 +363,7 @@
 		6D11A384DF3FCADAF43DFD7620973C02 /* AssertionRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionRecorder.swift; path = Sources/Nimble/Adapters/AssertionRecorder.swift; sourceTree = "<group>"; };
 		6D53C0C2FAC3836356BC75C94E003FC7 /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Quick/DSL/DSL.swift; sourceTree = "<group>"; };
 		702E51C4A0F32586E3A0EA42B17A31DA /* Pods-LogUploader_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		747BF5FF632BD742FC00447C27E7C8AD /* Pods_LogUploader_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LogUploader_Example.framework; path = "Pods-LogUploader_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		747BF5FF632BD742FC00447C27E7C8AD /* Pods_LogUploader_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LogUploader_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C192CE6997A4316B6A57978649B6D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		752DA7E08914C0914959FF6F93A48831 /* Quick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-prefix.pch"; sourceTree = "<group>"; };
 		77749CF0A6FE0FF1A2172F31D9CF81B9 /* ExampleHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExampleHooks.swift; path = Sources/Quick/Hooks/ExampleHooks.swift; sourceTree = "<group>"; };
@@ -384,6 +385,7 @@
 		8AB1F05851CDF4A41EDD1DF45E43A0C3 /* XcodeColorsLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XcodeColorsLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/XcodeColorsLogFormatter.swift; sourceTree = "<group>"; };
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
+		8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploder Extensions.swift"; path = "LogUploader/Classes/Uploder Extensions.swift"; sourceTree = "<group>"; };
 		8F1C117E9318932BDE8ABCC384EA7979 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
 		8FB11291D74293F4C4E4386AB186DB28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9028712A7140F0D76038032190EA1602 /* Pods-LogUploader_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LogUploader_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -391,7 +393,7 @@
 		91468E8023578D38E280279FC73DE6D5 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		93516C96C6FDE4CA090E44B915440360 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		93A11DC7FA367C2F5AE94D2E4289FA09 /* AssertionDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionDispatcher.swift; path = Sources/Nimble/Adapters/AssertionDispatcher.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94A410032719DD912D91A34AAE8EBF10 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		951DA8E661FD8A2CC68405AB131EB0D4 /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
 		970D508F9EA38F8C96D641FC2F414271 /* Pods-LogUploader_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LogUploader_Tests.modulemap"; sourceTree = "<group>"; };
@@ -401,11 +403,11 @@
 		98EC30A18936882F52060072F955C59E /* Behavior.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Behavior.swift; path = Sources/Quick/Behavior.swift; sourceTree = "<group>"; };
 		9AB4162FE5D79DFA2C452AA767CBF287 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9B0FB1F41B498A02DD8F0DEC5E189447 /* AppleSystemLogDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppleSystemLogDestination.swift; path = Sources/XCGLogger/Destinations/AppleSystemLogDestination.swift; sourceTree = "<group>"; };
-		9E6DB6F6DAF0229938A69934C6CF3CA7 /* LogUploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LogUploader.framework; path = LogUploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E6DB6F6DAF0229938A69934C6CF3CA7 /* LogUploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LogUploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC466C8798258D9A0DF498DEC904A21 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		A539A633B6F5306D0DD7E9D480314AFE /* BeLessThanOrEqual.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLessThanOrEqual.swift; path = Sources/Nimble/Matchers/BeLessThanOrEqual.swift; sourceTree = "<group>"; };
 		A5B89FFA69DA91EF715B1C1B31EA673F /* LogUploader-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LogUploader-prefix.pch"; sourceTree = "<group>"; };
-		A7A8CA0A022764DA4BDC36BD76CEE0C1 /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XCGLogger.framework; path = XCGLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7A8CA0A022764DA4BDC36BD76CEE0C1 /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCGLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7E50604FAC135CF56A321AD3A2164BD /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
 		A8F7E6DCB016EF0B8A6B2AD8B65D1924 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Sources/Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
 		A9164BA4C51CCC2089E1D2B6DF985214 /* NSBundle+CurrentTestBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+CurrentTestBundle.swift"; path = "Sources/Quick/NSBundle+CurrentTestBundle.swift"; sourceTree = "<group>"; };
@@ -414,7 +416,7 @@
 		AAA25DE6DB3D9774D8304DAC7C4C4E16 /* MatcherFunc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherFunc.swift; path = Sources/Nimble/Matchers/MatcherFunc.swift; sourceTree = "<group>"; };
 		AB8C68B92AC8A00E66FE405E90A37709 /* ExpectationMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpectationMessage.swift; path = Sources/Nimble/ExpectationMessage.swift; sourceTree = "<group>"; };
 		AC5807A51C05A94B705A8707564BFAA3 /* CwlDarwinDefinitions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CwlDarwinDefinitions.swift; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlPreconditionTesting/CwlDarwinDefinitions.swift; sourceTree = "<group>"; };
-		AE73D50BCED912D2F4F6CA9B2DA4B48E /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nimble.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE73D50BCED912D2F4F6CA9B2DA4B48E /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB4923F13D222C4478DA32487724481 /* UserInfoFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserInfoFilter.swift; path = Sources/XCGLogger/Filters/UserInfoFilter.swift; sourceTree = "<group>"; };
 		AF19F501A73B41FA0CD6708D4B80331C /* BeLessThan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLessThan.swift; path = Sources/Nimble/Matchers/BeLessThan.swift; sourceTree = "<group>"; };
 		AF897C48DC48F104E6F05EC5CA645C20 /* CwlCatchBadInstruction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CwlCatchBadInstruction.swift; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlPreconditionTesting/CwlCatchBadInstruction.swift; sourceTree = "<group>"; };
@@ -432,7 +434,7 @@
 		BEC004D408D613AB4A2719268C403425 /* XCTestSuite+QuickTestSuiteBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestSuite+QuickTestSuiteBuilder.m"; path = "Sources/QuickObjectiveC/XCTestSuite+QuickTestSuiteBuilder.m"; sourceTree = "<group>"; };
 		BF495DD0BE73864934C99D512DBF10D4 /* Async.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Async.swift; path = Sources/Nimble/Utils/Async.swift; sourceTree = "<group>"; };
 		BF8A15E4938FC5FA796421600346C9D2 /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
-		C0320C43D75A70734D9623DA03E54A1C /* Pods_LogUploader_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LogUploader_Tests.framework; path = "Pods-LogUploader_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0320C43D75A70734D9623DA03E54A1C /* Pods_LogUploader_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LogUploader_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C03C0AD4B7C6F43331F969B89F54DEF3 /* Pods-LogUploader_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LogUploader_Tests-dummy.m"; sourceTree = "<group>"; };
 		C15430328C7CBADB905A3C5CA71BAC67 /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Nimble/Utils/Errors.swift; sourceTree = "<group>"; };
 		C1A72445AB456FE02DE8C6295675D04C /* Nimble.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Nimble.h; path = Sources/Nimble/Nimble.h; sourceTree = "<group>"; };
@@ -487,7 +489,7 @@
 		FB754C21D9EB96634D4E134EF525BA98 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		FD22362D619BFAF5B6380F092FD938F0 /* AsyncMatcherWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncMatcherWrapper.swift; path = Sources/Nimble/Matchers/AsyncMatcherWrapper.swift; sourceTree = "<group>"; };
 		FD463AB57800FCE2DD880377EF91F15C /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
-		FD4DC327824E14DD23AAA5107DFC1322 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4DC327824E14DD23AAA5107DFC1322 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,7 @@
 				F26258D8721AFC31075C1E1523E71EB8 /* Struct Destination.swift */,
 				94EED1E70E85B70EF9A44F90125248E0 /* Pod */,
 				E5F6B16B3E4AD13145E823206B28BCD7 /* Support Files */,
+				8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */,
 			);
 			name = LogUploader;
 			path = ../..;
@@ -662,7 +665,6 @@
 				E05F268681BE9C45579C71DF8413F807 /* XCTestObservationCenter+Register.m */,
 				9D22753C9C49E4FE6009991286B9CE9D /* Support Files */,
 			);
-			name = Nimble;
 			path = Nimble;
 			sourceTree = "<group>";
 		};
@@ -817,7 +819,6 @@
 				6463C2633E70B2EBC796EB044A012C61 /* Core */,
 				FCF0BD9E100F682FCC25FB1FAF5C0C33 /* Support Files */,
 			);
-			name = XCGLogger;
 			path = XCGLogger;
 			sourceTree = "<group>";
 		};
@@ -843,7 +844,6 @@
 				CE73A3E12801B8212D92665F76B88438 /* Validation.swift */,
 				DF06C503C832D43667D746AC620B0134 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -853,7 +853,6 @@
 				D51F81B52AFFFDA13CB5E8E8727C6260 /* ObjcExceptionBridging */,
 				66986A56567A1AC114C59B6F8B92D45B /* Support Files */,
 			);
-			name = ObjcExceptionBridging;
 			path = ObjcExceptionBridging;
 			sourceTree = "<group>";
 		};
@@ -917,7 +916,6 @@
 				BEC004D408D613AB4A2719268C403425 /* XCTestSuite+QuickTestSuiteBuilder.m */,
 				6B35C8266E3FD8A8A90E9B44177C05C1 /* Support Files */,
 			);
-			name = Quick;
 			path = Quick;
 			sourceTree = "<group>";
 		};
@@ -1472,6 +1470,7 @@
 				DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader.swift in Sources */,
 				DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */,
 				E28EC8104A928E4A604C37C8D06B927A /* LogUploadResult.swift in Sources */,
+				8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */,
 				512E881761D43AEDA64EF9801B43D463 /* Struct Destination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
