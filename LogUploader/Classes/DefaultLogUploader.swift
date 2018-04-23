@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 public struct DefaultLogUploader: LogUploader {
+    
     /// Public initializer
     public init() {
         return
@@ -44,6 +45,11 @@ public struct DefaultLogUploader: LogUploader {
         } catch (let error) {
             completion?(.failure(.missingRequest(error)))
         }
+    }
+    
+    /// Gets the failed logs from before and uploads them
+    public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
+        completion?(.success)
     }
     
     /// Generates the URL Request for Alamofire

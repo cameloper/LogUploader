@@ -160,7 +160,7 @@
 		DDC888B401F2E030E426E1684F0E640F /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D916ED20342DC1E6AA320D3D4A3819 /* PrePostFixLogFormatter.swift */; };
 		DDD1C16796FF9A64DFB943C2804D92D8 /* AppleSystemLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FB1F41B498A02DD8F0DEC5E189447 /* AppleSystemLogDestination.swift */; };
 		DF026F6F406A4FB6CEA63B0A4B9E27DD /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373CDDD4A8BD6A48F5E748CBCD2CCB14 /* AllPass.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C3515CF8D6B0092B07A6D772F277E /* LogUploader.swift */; };
+		DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C3515CF8D6B0092B07A6D772F277E /* LogUploader Protocol.swift */; };
 		DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB74512CE7B00621B58D969CED2F530 /* LogUploadError.swift */; };
 		E28EC8104A928E4A604C37C8D06B927A /* LogUploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7CF286FC09E1BB9CC577AFC1B3E36E /* LogUploadResult.swift */; };
 		E791002CD8AE13A3E1076FA2EB2855F0 /* Pods-LogUploader_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BB9F571B06945AE5616B05D9AE6E1DA /* Pods-LogUploader_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -266,7 +266,7 @@
 
 /* Begin PBXFileReference section */
 		044B4311270A1CCCDD12A5908B9FAA08 /* QuickConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickConfiguration.m; path = Sources/QuickObjectiveC/Configuration/QuickConfiguration.m; sourceTree = "<group>"; };
-		081C3515CF8D6B0092B07A6D772F277E /* LogUploader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogUploader.swift; path = LogUploader/Classes/LogUploader.swift; sourceTree = "<group>"; };
+		081C3515CF8D6B0092B07A6D772F277E /* LogUploader Protocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LogUploader Protocol.swift"; path = "LogUploader/Classes/LogUploader Protocol.swift"; sourceTree = "<group>"; };
 		09184DA99B93AFA935FEF8AA4F7CBF30 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09509F7CEC3DA03A782898E9AAF25D8F /* World.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = World.swift; path = Sources/Quick/World.swift; sourceTree = "<group>"; };
 		0A2775DE66888E7940B3562F15EE3507 /* BeginWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeginWith.swift; path = Sources/Nimble/Matchers/BeginWith.swift; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 				7F2DD9AA2D0B5FA44AE279093EF2E46B /* DefaultLogUploader.swift */,
 				2A042EDC21166319D266EBAE24E8F425 /* JSONDestination.swift */,
 				CE825A6D68CA7BE0C1BE363AC58F5ABF /* Log Struct.swift */,
-				081C3515CF8D6B0092B07A6D772F277E /* LogUploader.swift */,
+				081C3515CF8D6B0092B07A6D772F277E /* LogUploader Protocol.swift */,
 				CFB74512CE7B00621B58D969CED2F530 /* LogUploadError.swift */,
 				DE7CF286FC09E1BB9CC577AFC1B3E36E /* LogUploadResult.swift */,
 				F26258D8721AFC31075C1E1523E71EB8 /* Struct Destination.swift */,
@@ -1470,7 +1470,7 @@
 				F74DEDB39EE9A5B6521317392ABF0F3E /* JSONDestination.swift in Sources */,
 				D96E96F4A0EB636876D4D3280A2FD52B /* Log Struct.swift in Sources */,
 				1EBEC5CEFF3ADAA014F1B96872F0A280 /* LogUploader-dummy.m in Sources */,
-				DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader.swift in Sources */,
+				DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader Protocol.swift in Sources */,
 				8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */,
 				DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */,
 				E28EC8104A928E4A604C37C8D06B927A /* LogUploadResult.swift in Sources */,
