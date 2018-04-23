@@ -47,7 +47,7 @@ public struct Log: Codable {
     public var date: Date?
     
     /// The log message to display
-    public var message: String?
+    public var message: String
     
     /// Name of the function that generated this log
     public var functionName: String?
