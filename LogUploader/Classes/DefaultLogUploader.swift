@@ -38,6 +38,10 @@ public struct DefaultLogUploader: LogUploader {
                     let networkError = NetworkError(response: response.response, error: error)
                     completion?(.failure(.network(networkError)))
                 } else {
+                    // Do the cleanup, if failed, log
+                    if !self.cleanup(fileURL: uploadFileURL, conf.storeSuccessfulUploads) {
+                        destination.owner?.warning("File handling operation of successful log upload failed.")
+                    }
                     completion?(.success)
                 }
             }
@@ -47,12 +51,44 @@ public struct DefaultLogUploader: LogUploader {
         }
     }
     
+    /// If wanted, move file to 'successful' folder. Otherwise delete
+    /// - Parameters:
+    ///     - folderURL: The url of destinations upload folder
+    ///     - fileURL: The url to the log file
+    ///     - store: Boolean that decides whether to store the file or not
+    /// - Returns:
+    ///     - true: Operation successful
+    ///     - false: Operation failed
+    func cleanup(fileURL: URL, _ store: Bool) -> Bool {
+        let fileManager = FileManager()
+        // Get file name
+        let fileName = fileURL.lastPathComponent
+        // Get folder URL
+        let folderURL = fileURL.deletingLastPathComponent()
+        do {
+            switch store {
+            case true:
+                let sFileURL = folderURL.appendingPathComponent("successful/\(fileName)", isDirectory: false)
+                try fileManager.moveItem(at: fileURL, to: sFileURL)
+            case false:
+                try fileManager.removeItem(at: fileURL)
+            }
+            return true
+        } catch {
+            return false
+        }
+    }
+    
     /// Gets the failed logs from before and uploads them
     public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
         completion?(.success)
     }
     
     /// Generates the URL Request for Alamofire
+    /// - Parameters:
+    ///     - fileUrl: URL of the logFile that'll be sent
+    ///     - conf: Configuration object for the request
+    /// - Returns: `URLRequest` object for alamofire
     public func generateUrlRequest(fileUrl: URL, conf: LogUploaderConfiguration) throws -> URLRequest {
         var conf = conf.uploadConf
         
@@ -92,8 +128,8 @@ extension CustomFileDestination {
         }
         
         // Get upload path
-        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
-        let uploadFilePath = "\(cachePath)/\(self.identifier)_upload.\(self.defaultFileExtension)"
+        let docsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let uploadFilePath = "\(docsPath)/\(self.identifier)/\(Date().timeIntervalSinceReferenceDate).\(self.defaultFileExtension)"
         let uploadFileURL = URL(fileURLWithPath: uploadFilePath)
         
         do {
