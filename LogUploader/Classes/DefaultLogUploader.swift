@@ -36,11 +36,15 @@ public struct DefaultLogUploader: LogUploader {
             Alamofire.request(urlRequest).validate().response { response in
                 if let error = response.error {
                     let networkError = NetworkError(response: response.response, error: error)
+                    // Do the cleanup, if failed, log
+                    if !self.cleanup(false, fileURL: uploadFileURL, conf.storeFailedUploads) {
+                        destination.owner?.warning("File handling operation of failed log upload failed!")
+                    }
                     completion?(.failure(.network(networkError)))
                 } else {
                     // Do the cleanup, if failed, log
-                    if !self.cleanup(fileURL: uploadFileURL, conf.storeSuccessfulUploads) {
-                        destination.owner?.warning("File handling operation of successful log upload failed.")
+                    if !self.cleanup(true, fileURL: uploadFileURL, conf.storeSuccessfulUploads) {
+                        destination.owner?.warning("File handling operation of successful log upload failed!")
                     }
                     completion?(.success)
                 }
@@ -51,7 +55,7 @@ public struct DefaultLogUploader: LogUploader {
         }
     }
     
-    /// If wanted, move file to 'successful' folder. Otherwise delete
+    /// If wanted, move file to successful/failed folder. Otherwise delete
     /// - Parameters:
     ///     - folderURL: The url of destinations upload folder
     ///     - fileURL: The url to the log file
@@ -59,7 +63,9 @@ public struct DefaultLogUploader: LogUploader {
     /// - Returns:
     ///     - true: Operation successful
     ///     - false: Operation failed
-    func cleanup(fileURL: URL, _ store: Bool) -> Bool {
+    func cleanup(_ successful: Bool, fileURL: URL, _ store: Bool) -> Bool {
+        // Set folder name depending on success
+        let folderName = successful ? "successful" : "failed"
         let fileManager = FileManager()
         // Get file name
         let fileName = fileURL.lastPathComponent
@@ -68,7 +74,8 @@ public struct DefaultLogUploader: LogUploader {
         do {
             switch store {
             case true:
-                let sFileURL = folderURL.appendingPathComponent("successful/\(fileName)", isDirectory: false)
+                /// URL of the new folder the file is going to get moved to. (successful/failed)
+                let sFileURL = folderURL.appendingPathComponent("\(folderName)/\(fileName)", isDirectory: false)
                 try fileManager.moveItem(at: fileURL, to: sFileURL)
             case false:
                 try fileManager.removeItem(at: fileURL)
