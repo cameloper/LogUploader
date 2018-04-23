@@ -76,3 +76,45 @@ public struct DefaultLogUploader: LogUploader {
     }
     
 }
+
+/// Extension to handle the file operation DefaultLogUploader requires
+extension CustomFileDestination {
+    
+    /// Move the file to a new location before starting the upload
+    /// to allow new logs to be written during upload process
+    open func prepareFileForUpload() -> URL? {
+        // Close file to prevent conflicts
+        self.closeFile()
+        let fileManager = FileManager()
+        guard fileManager.fileExists(atPath: fileURL.path) else {
+            // File or url doesn't exist
+            return nil
+        }
+        
+        // Get upload path
+        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        let uploadFilePath = "\(cachePath)/\(self.identifier)_upload.\(self.defaultFileExtension)"
+        let uploadFileURL = URL(fileURLWithPath: uploadFilePath)
+        
+        do {
+            // Delete existing upload file
+            if fileManager.fileExists(atPath: uploadFilePath) {
+                try fileManager.removeItem(at: uploadFileURL)
+            }
+            
+            //  Move log file
+            try fileManager.moveItem(at: fileURL, to: uploadFileURL)
+            
+        } catch (let error) {
+            self.owner?.error("An error occured during file operations. \(error)")
+            return nil
+        }
+        
+        // Open file
+        self.openFile()
+        // Write all waiting logs
+        self.flush()
+        
+        return uploadFileURL
+    }
+}

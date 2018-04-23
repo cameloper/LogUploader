@@ -99,7 +99,7 @@
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8C0D9CAACB2DE376E5B590A692E922DC /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F38C18B03A46248BE8F0347CB58DF1 /* BaseDestination.swift */; };
 		8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */; };
-		8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */; };
+		8CFC6B13208A1C5F004DD255 /* XCGLogger Uploader Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC6B12208A1C5F004DD255 /* XCGLogger Uploader Extension.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
 		8EABCFE132743EA0C2901147FE901328 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FD03555F02259AF320928562F93855 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD7DC8D216421EE213C56BA78E286BB /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820055A424559F6754FA38E439CECEE /* QCKDSL.m */; };
@@ -387,7 +387,7 @@
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
 		8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploader Configurations.swift"; path = "LogUploader/Classes/Uploader Configurations.swift"; sourceTree = "<group>"; };
-		8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploder Extensions.swift"; path = "LogUploader/Classes/Uploder Extensions.swift"; sourceTree = "<group>"; };
+		8CFC6B12208A1C5F004DD255 /* XCGLogger Uploader Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "XCGLogger Uploader Extension.swift"; path = "LogUploader/Classes/XCGLogger Uploader Extension.swift"; sourceTree = "<group>"; };
 		8F1C117E9318932BDE8ABCC384EA7979 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
 		8FB11291D74293F4C4E4386AB186DB28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9028712A7140F0D76038032190EA1602 /* Pods-LogUploader_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LogUploader_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -577,7 +577,7 @@
 				CFB74512CE7B00621B58D969CED2F530 /* LogUploadError.swift */,
 				DE7CF286FC09E1BB9CC577AFC1B3E36E /* LogUploadResult.swift */,
 				F26258D8721AFC31075C1E1523E71EB8 /* Struct Destination.swift */,
-				8CFC6B12208A1C5F004DD255 /* Uploder Extensions.swift */,
+				8CFC6B12208A1C5F004DD255 /* XCGLogger Uploader Extension.swift */,
 				8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */,
 				94EED1E70E85B70EF9A44F90125248E0 /* Pod */,
 				E5F6B16B3E4AD13145E823206B28BCD7 /* Support Files */,
@@ -1474,7 +1474,7 @@
 				8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */,
 				DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */,
 				E28EC8104A928E4A604C37C8D06B927A /* LogUploadResult.swift in Sources */,
-				8CFC6B13208A1C5F004DD255 /* Uploder Extensions.swift in Sources */,
+				8CFC6B13208A1C5F004DD255 /* XCGLogger Uploader Extension.swift in Sources */,
 				512E881761D43AEDA64EF9801B43D463 /* Struct Destination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
