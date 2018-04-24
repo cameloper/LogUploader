@@ -65,6 +65,16 @@ extension XCGLogger {
         let uploader = conf.uploader
         
         // Then upload the logs and log the result to the owner
-        uploader.uploadFailedLogs(from: destination, completion: completion)
+        uploader.uploadFailedLogs(from: destination) { results in
+            for result in results {
+                switch result.value {
+                case .success:
+                    destination.owner?.debug("Upload of failed logfile \(result.key) is successful.")
+                case .failure(let error):
+                    destination.owner?.error("Upload of failed logdile \(result.key) failed. \(error.displayMessage)")
+                }
+            }
+            completion?(results)
+        }
     }
 }
