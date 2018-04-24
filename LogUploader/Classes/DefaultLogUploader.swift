@@ -10,9 +10,12 @@ import Alamofire
 
 public struct DefaultLogUploader: LogUploader {
     
+    public let homeURL: URL
+    
     /// Public initializer
     public init() {
-        return
+        let docsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        self.homeURL = URL(fileURLWithPath: "\(docsPath)/LogUploader", isDirectory: true)
     }
     
     /// Begin the process of log uploading
@@ -69,13 +72,20 @@ public struct DefaultLogUploader: LogUploader {
         let fileManager = FileManager()
         // Get file name
         let fileName = fileURL.lastPathComponent
-        // Get folder URL
-        let folderURL = fileURL.deletingLastPathComponent()
+        // Get folder URL we'll copy the file to
+        let folderURL = fileURL.deletingLastPathComponent().appendingPathComponent(folderName, isDirectory: true)
+        
         do {
             switch store {
             case true:
-                /// URL of the new folder the file is going to get moved to. (successful/failed)
-                let sFileURL = folderURL.appendingPathComponent("\(folderName)/\(fileName)", isDirectory: false)
+                // Check if destination exist and if not, create folder
+                var objTrue: ObjCBool = true
+                if !fileManager.fileExists(atPath: folderURL.path, isDirectory: &objTrue) {
+                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
+                }
+                
+                /// New file url for moving operation (in successful/failed)
+                let sFileURL = folderURL.appendingPathComponent("\(fileName)", isDirectory: false)
                 try fileManager.moveItem(at: fileURL, to: sFileURL)
             case false:
                 try fileManager.removeItem(at: fileURL)
@@ -134,14 +144,25 @@ extension CustomFileDestination {
             return nil
         }
         
-        // Get upload path
-        let docsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let uploadFilePath = "\(docsPath)/\(self.identifier)/\(Date().timeIntervalSinceReferenceDate).\(self.defaultFileExtension)"
-        let uploadFileURL = URL(fileURLWithPath: uploadFilePath)
+        // Get the home url of our logger
+        guard let homeURL = self.uploaderConfiguration?.uploader.homeURL else {
+            // Home folder URL isn't present
+            return nil
+        }
+        
+        // Set URL of upload file folder
+        let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
+        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(Date().timeIntervalSinceReferenceDate).\(self.defaultFileExtension)", isDirectory: true)
         
         do {
+            // Check if destination exist and if not, create folder
+            var objTrue: ObjCBool = true
+            if !fileManager.fileExists(atPath: uploadFolderURL.path, isDirectory: &objTrue) {
+                try fileManager.createDirectory(at: uploadFolderURL, withIntermediateDirectories: true, attributes: nil)
+            }
+            
             // Delete existing upload file
-            if fileManager.fileExists(atPath: uploadFilePath) {
+            if fileManager.fileExists(atPath: uploadFileURL.path) {
                 try fileManager.removeItem(at: uploadFileURL)
             }
             
