@@ -9,6 +9,7 @@ import Foundation
 import XCGLogger
 
 public typealias LogUploadCompletion = (LogUploadResult<LogUploadError>) -> Void
+public typealias LogUploadsCompletion = (_ logfile: URL, _ result: LogUploadResult<LogUploadError>) -> Void
 
 extension XCGLogger {
     
