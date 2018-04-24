@@ -9,7 +9,7 @@ import Foundation
 import XCGLogger
 
 public typealias LogUploadCompletion = (LogUploadResult<LogUploadError>) -> Void
-public typealias LogUploadsCompletion = (_ logfile: URL, _ result: LogUploadResult<LogUploadError>) -> Void
+public typealias LogUploadsCompletion = (_ logfile: URL?, _ result: LogUploadResult<LogUploadError>) -> Void
 
 extension XCGLogger {
     
@@ -42,5 +42,23 @@ extension XCGLogger {
             }
             completion?(result)
         }
+    }
+    
+    public func uploadFailed(from destinationId: String, completion: LogUploadsCompletion?) {
+        // First get the destination object from logger
+        guard let destination = self.destination(withIdentifier: destinationId) as? CustomFileDestination else {
+            completion?(nil, .failure(.missingDestination))
+            return
+        }
+        
+        guard let conf = destination.uploaderConfiguration else {
+            completion?(nil, .failure(.missingConfiguration))
+            return
+        }
+        
+        let uploader = conf.uploader
+        
+        // Then upload the logs and log the result to the owner
+        uploader.uploadFailedLogs(from: destination, completion: completion)
     }
 }

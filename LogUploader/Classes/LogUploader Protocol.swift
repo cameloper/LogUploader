@@ -11,5 +11,5 @@ import Foundation
 public protocol LogUploader {
     var homeURL: URL { get }
     func upload(from destination: CustomFileDestination, completion: LogUploadCompletion?)
-    func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadCompletion?)
+    func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?)
 }
