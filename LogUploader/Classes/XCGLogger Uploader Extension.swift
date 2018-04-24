@@ -8,8 +8,14 @@
 import Foundation
 import XCGLogger
 
-public typealias LogUploadCompletion = (LogUploadResult<LogUploadError>) -> Void
-public typealias LogUploadsCompletion = (_ logfile: URL?, _ result: LogUploadResult<LogUploadError>) -> Void
+/// Completion closure for single log upload
+/// - parameter result: Result of the upload
+public typealias LogUploadCompletion = (_ result: LogUploadResult<LogUploadError>) -> Void
+/// Completion closure for operation with multiple LogUploads such as `uploadFailed(_:)`
+/// - parameter results: Dictionary of results with name of LogFile and its result
+///     - key: Name of LogFile. "`n/A`" for uploads that failed before getting the Uploader
+///     - value: Result of upload
+public typealias LogUploadsCompletion = (_ results: [String: LogUploadResult<LogUploadError>]) -> Void
 
 extension XCGLogger {
     
@@ -47,12 +53,12 @@ extension XCGLogger {
     public func uploadFailed(from destinationId: String, completion: LogUploadsCompletion?) {
         // First get the destination object from logger
         guard let destination = self.destination(withIdentifier: destinationId) as? CustomFileDestination else {
-            completion?(nil, .failure(.missingDestination))
+            completion?(["n/A": .failure(.missingDestination)])
             return
         }
         
         guard let conf = destination.uploaderConfiguration else {
-            completion?(nil, .failure(.missingConfiguration))
+            completion?(["n/A": .failure(.missingConfiguration)])
             return
         }
         
