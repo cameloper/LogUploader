@@ -8,15 +8,6 @@
 import Foundation
 import XCGLogger
 
-/// Completion closure for single log upload
-/// - parameter result: Result of the upload
-public typealias LogUploadCompletion = (_ result: LogUploadResult<LogUploadError>) -> Void
-/// Completion closure for operation with multiple LogUploads such as `uploadFailed(_:)`
-/// - parameter results: Dictionary of results with name of LogFile and its result
-///     - key: Name of LogFile. "`n/A`" for uploads that failed before getting the Uploader
-///     - value: Result of upload
-public typealias LogUploadsCompletion = (_ results: [String: LogUploadResult<LogUploadError>]) -> Void
-
 extension XCGLogger {
     
     /// Upload the saved log file for a destination with the given identifier
@@ -31,11 +22,13 @@ extension XCGLogger {
             return
         }
         
+        // Then get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?(.failure(.missingConfiguration))
             return
         }
         
+        // We'll use the desired loguploader instance
         let uploader = conf.uploader
         
         // Then upload the logs and log the result to the owner
@@ -50,15 +43,19 @@ extension XCGLogger {
         }
     }
     
+    /// Try to upload the previous failed logfiles
+    /// - Parameters:
+    ///     - destinationId: Identifier of the destination we'll try to upload logs for
+    ///     - completion: Completion closure that passes the results
     public func uploadFailed(from destinationId: String, completion: LogUploadsCompletion?) {
         // First get the destination object from logger
         guard let destination = self.destination(withIdentifier: destinationId) as? CustomFileDestination else {
-            completion?(["n/A": .failure(.missingDestination)])
+            completion?([LUResult(destinationId: destinationId, logFileName: nil, result: .failure(.missingDestination))])
             return
         }
         
         guard let conf = destination.uploaderConfiguration else {
-            completion?(["n/A": .failure(.missingConfiguration)])
+            completion?([LUResult(destinationId: destinationId, logFileName: nil, result: .failure(.missingDestination))])
             return
         }
         
@@ -67,13 +64,14 @@ extension XCGLogger {
         // Then upload the logs and log the result to the owner
         uploader.uploadFailedLogs(from: destination) { results in
             for result in results {
-                switch result.value {
+                switch result.result {
                 case .success:
-                    destination.owner?.debug("Upload of failed logfile \(result.key) is successful.")
+                    destination.owner?.debug("Upload of failed logfile \(result.logFileName!) is successful.")
                 case .failure(let error):
-                    destination.owner?.error("Upload of failed logdile \(result.key) failed. \(error.displayMessage)")
+                    destination.owner?.error("Upload of failed logfile \(result.logFileName!) failed. \(error.displayMessage)")
                 }
             }
+            
             completion?(results)
         }
     }

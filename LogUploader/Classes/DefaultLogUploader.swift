@@ -98,7 +98,7 @@ public struct DefaultLogUploader: LogUploader {
     
     /// Gets the failed logs from before and uploads them
     public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
-        completion?(["n/A": .success])
+        completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.logFileError))])
     }
     
     /// Generates the URL Request for Alamofire
