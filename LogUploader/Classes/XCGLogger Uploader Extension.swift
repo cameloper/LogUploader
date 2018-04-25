@@ -10,10 +10,27 @@ import XCGLogger
 
 extension XCGLogger {
     
+    /// Try to upload all logs from all destinations that have a configuration
+    /// - parameter completion: Completion closure that passes the results
+    public func uploadLogs(completion: LogUploadsCompletion?) {
+        // Get all Custom File Destinations
+        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        // This will be the output result array
+        var output = LUResults()
+        // Execute the `uploadLogs(from:)` for all destinations with non-nil configurations
+        for destination in destinations where destination.uploaderConfiguration != nil {
+            self.uploadLogs(from: destination) { result in
+                let fileName = destination.fileURL.lastPathComponent
+                output.append(LUResult(destinationId: destination.identifier, logFileName: fileName, result: result))
+            }
+        }
+        
+        completion?(output)
+    }
+    
     /// Upload the saved log file for a destination with the given identifier
     /// - Parameters:
     ///     - destinationId: Used to get the 'CustomFileDestination' object from logger
-    ///     - uploader: The initialized object which conforms to protocol LogUploader. It will be used to upload the logs
     ///     - completion: Returns the result of upload operation. Use to handle errors etc.
     public func uploadLogs(from destinationId: String, completion: LogUploadCompletion?) {
         // First get the destination object from logger
@@ -22,6 +39,15 @@ extension XCGLogger {
             return
         }
         
+        // Execute `uploadLogs(from:)` with destination object
+        self.uploadLogs(from: destination, completion: completion)
+    }
+    
+    /// Upload the saved log file for a destination with the given identifier
+    /// - Parameters:
+    ///     - destination: The destination which'll be the source of logs
+    ///     - completion: Returns the result of upload operation. Use to handle errors etc.
+    private func uploadLogs(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
         // Then get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?(.failure(.missingConfiguration))
@@ -35,7 +61,7 @@ extension XCGLogger {
         uploader.upload(from: destination) { result in
             switch result {
             case .success:
-                destination.owner?.info("LogUpload for destination \(destination) is successful")
+                destination.owner?.debug("LogUpload for destination \(destination) is successful")
             case .failure(let error):
                 destination.owner?.error("LogUpload for destination \(destination) failed. Reason: \(error.displayMessage)")
             }
@@ -43,22 +69,40 @@ extension XCGLogger {
         }
     }
     
+    /// Try to upload all failed logs from all destinations
+    /// - parameter completion: Completion closure that passes the results
+    public func uploadFailedLogs(completion: LogUploadsCompletion?) {
+        // Get all Custom File Destinations
+        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        // This will be the output result array
+        var output = LUResults()
+        // Execute the `uploadFailedLogs(from:)` for all destinations with non-nil configurations
+        for destination in destinations where destination.uploaderConfiguration != nil {
+            self.uploadFailedLogs() { results in
+                output.append(contentsOf: results)
+            }
+        }
+        completion?(output)
+    }
+    
     /// Try to upload the previous failed logfiles
     /// - Parameters:
     ///     - destinationId: Identifier of the destination we'll try to upload logs for
     ///     - completion: Completion closure that passes the results
-    public func uploadFailed(from destinationId: String, completion: LogUploadsCompletion?) {
+    public func uploadFailedLogs(from destinationId: String, completion: LogUploadsCompletion?) {
         // First get the destination object from logger
         guard let destination = self.destination(withIdentifier: destinationId) as? CustomFileDestination else {
             completion?([LUResult(destinationId: destinationId, logFileName: nil, result: .failure(.missingDestination))])
             return
         }
         
+        // Then get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?([LUResult(destinationId: destinationId, logFileName: nil, result: .failure(.missingDestination))])
             return
         }
         
+        // Get the desired log uploader
         let uploader = conf.uploader
         
         // Then upload the logs and log the result to the owner
@@ -66,9 +110,9 @@ extension XCGLogger {
             for result in results {
                 switch result.result {
                 case .success:
-                    destination.owner?.debug("Upload of failed logfile \(result.logFileName!) is successful.")
+                    destination.owner?.debug("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) is successful.")
                 case .failure(let error):
-                    destination.owner?.error("Upload of failed logfile \(result.logFileName!) failed. \(error.displayMessage)")
+                    destination.owner?.error("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) failed. \(error.displayMessage)")
                 }
             }
             
