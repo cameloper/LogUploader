@@ -97,8 +97,59 @@ public struct DefaultLogUploader: LogUploader {
     }
     
     /// Gets the failed logs from before and uploads them
+    /// - Parameters:
+    ///     - destination: The CustomFileDestination we'll upload the logs from
+    ///     - completion:
     public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
-        completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.logFileError))])
+        guard let conf = destination.uploaderConfiguration else {
+            completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.missingConfiguration))])
+            return
+        }
+        
+        let destURL = homeURL.appendingPathComponent(destination.identifier, isDirectory: true)
+        let failedURL = destURL.appendingPathComponent("failed")
+        let fileManager = FileManager()
+        do {
+            let files = try fileManager.contentsOfDirectory(at: failedURL, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+            let logFiles = files.filter { $0.pathExtension == destination.defaultFileExtension }
+            var results = LUResults()
+            for logFile in logFiles {
+                uploadFailedLog(destination: destination, fileURL: logFile, conf: conf) { result in
+                    results.append(LUResult(destinationId: destination.identifier, logFileName: logFile.lastPathComponent, result: result))
+                }
+            }
+            
+            completion?(results)
+            
+        } catch {
+            completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.logFileError))])
+        }
+    }
+    
+    func uploadFailedLog(destination: CustomFileDestination, fileURL: URL, conf: LogUploaderConfiguration, completion: LogUploadCompletion?) {
+        do {
+            let request = try generateUrlRequest(fileUrl: fileURL, conf: conf)
+            Alamofire.request(request).validate().response { response in
+                if let error = response.error {
+                    let networkError = NetworkError(response: response.response, error: error)
+                    // Do the cleanup, if failed, log
+                    if !self.cleanup(false, fileURL: fileURL, conf.storeFailedUploads) {
+                        destination.owner?.warning("File handling operation of failed log upload failed!")
+                    }
+                    
+                    completion?(.failure(.network(networkError)))
+                } else {
+                    // Do the cleanup, if failed, log
+                    if !self.cleanup(true, fileURL: fileURL, conf.storeSuccessfulUploads) {
+                        destination.owner?.warning("File handling operation of successful log upload failed!")
+                    }
+                    
+                    completion?(.success)
+                }
+            }
+        } catch (let error) {
+            completion?(.failure(.missingRequest(error)))
+        }
     }
     
     /// Generates the URL Request for Alamofire
@@ -152,7 +203,9 @@ extension CustomFileDestination {
         
         // Set URL of upload file folder
         let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
-        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(Date().timeIntervalSinceReferenceDate).\(self.defaultFileExtension)", isDirectory: true)
+        // Name of the file should be the current date in Apple's format
+        let date = Date().timeIntervalSinceReferenceDate
+        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(self.defaultFileExtension)", isDirectory: true)
         
         do {
             // Check if destination exist and if not, create folder

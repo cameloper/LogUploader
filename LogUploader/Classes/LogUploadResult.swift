@@ -21,11 +21,11 @@ public typealias LUResults = [LUResult]
 /// Log Uploader Result struct for multiple uploads
 public struct LUResult {
     /// ID of the destination
-    var destinationId: String
+    public var destinationId: String
     /// Name of the logfile
-    var logFileName: String?
+    public var logFileName: String?
     /// Result enum object
-    var result: LogUploadResult<LogUploadError>
+    public var result: LogUploadResult<LogUploadError>
 }
 
 /// Swift result enum for LogUpload

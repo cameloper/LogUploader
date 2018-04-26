@@ -35,6 +35,13 @@ class ViewController: UIViewController {
         log.debug(txtNewLog.text)
         txtLogs.text = "\(txtLogs.text ?? "")\n>\(text)"
     }
+    @IBAction func uploadFailed(_ sender: Any) {
+        log.uploadFailedLogs() { results in
+            for result in results where result.result.isFailure {
+                self.logMsg(text: "LogUpload of \(result.destinationId)/\(result.logFileName ?? "") failed. \(result.result.error!)")
+            }
+        }
+    }
     
     @IBAction func uploadLogs(_ sender: Any) {
         log.uploadLogs(from: "logger.jsonLogger") { result in

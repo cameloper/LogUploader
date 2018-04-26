@@ -73,12 +73,12 @@ extension XCGLogger {
     /// - parameter completion: Completion closure that passes the results
     public func uploadFailedLogs(completion: LogUploadsCompletion?) {
         // Get all Custom File Destinations
-        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        let customFileDestinations = self.destinations.compactMap { $0 as? CustomFileDestination }
         // This will be the output result array
         var output = LUResults()
         // Execute the `uploadFailedLogs(from:)` for all destinations with non-nil configurations
-        for destination in destinations where destination.uploaderConfiguration != nil {
-            self.uploadFailedLogs() { results in
+        for destination in customFileDestinations where destination.uploaderConfiguration != nil {
+            self.uploadFailedLogs(from: destination) { results in
                 output.append(contentsOf: results)
             }
         }
@@ -96,9 +96,15 @@ extension XCGLogger {
             return
         }
         
+        uploadFailedLogs(from: destination, completion: completion)
+    }
+    
+    func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
         // Then get the configuration
         guard let conf = destination.uploaderConfiguration else {
-            completion?([LUResult(destinationId: destinationId, logFileName: nil, result: .failure(.missingDestination))])
+            completion?([LUResult(destinationId: destination.identifier,
+                                  logFileName: nil,
+                                  result: .failure(.missingDestination))])
             return
         }
         
@@ -112,7 +118,7 @@ extension XCGLogger {
                 case .success:
                     destination.owner?.debug("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) is successful.")
                 case .failure(let error):
-                    destination.owner?.error("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) failed. \(error.displayMessage)")
+                    destination.owner?.error("Upload of failed logfile \(result.logFileName ?? "") from destination \(destination.identifier) failed. \(error.displayMessage)")
                 }
             }
             
