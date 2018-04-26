@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import XCGLogger
 
 public struct DefaultLogUploader: LogUploader {
     
@@ -99,22 +100,30 @@ public struct DefaultLogUploader: LogUploader {
     /// Gets the failed logs from before and uploads them
     /// - Parameters:
     ///     - destination: The CustomFileDestination we'll upload the logs from
-    ///     - completion:
+    ///     - completion: Completion closure that passes the results
     public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
+        // Get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.missingConfiguration))])
             return
         }
         
+        // Get the base URL of destination and the failed folder URL
         let destURL = homeURL.appendingPathComponent(destination.identifier, isDirectory: true)
         let failedURL = destURL.appendingPathComponent("failed")
         let fileManager = FileManager()
+        
         do {
+            // Get all files in folder
             let files = try fileManager.contentsOfDirectory(at: failedURL, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+            
+            // Filter files and get only with valid extension
             let logFiles = files.filter { $0.pathExtension == destination.defaultFileExtension }
             var results = LUResults()
+            
+            // Execute method for all files
             for logFile in logFiles {
-                uploadFailedLog(destination: destination, fileURL: logFile, conf: conf) { result in
+                uploadFailedLog(logger: destination.owner, fileURL: logFile, conf: conf) { result in
                     results.append(LUResult(destinationId: destination.identifier, logFileName: logFile.lastPathComponent, result: result))
                 }
             }
@@ -126,22 +135,29 @@ public struct DefaultLogUploader: LogUploader {
         }
     }
     
-    func uploadFailedLog(destination: CustomFileDestination, fileURL: URL, conf: LogUploaderConfiguration, completion: LogUploadCompletion?) {
+    /// Uploads the failed logFile
+    /// - Paremeters:
+    ///     - destination: The source destination
+    ///     - fileURL: LogFile that'll be uploaded
+    ///     - conf: Configuration file for the upload
+    func uploadFailedLog(logger: XCGLogger?, fileURL: URL, conf: LogUploaderConfiguration, completion: LogUploadCompletion?) {
         do {
+            // Generate URL request
             let request = try generateUrlRequest(fileUrl: fileURL, conf: conf)
+            
             Alamofire.request(request).validate().response { response in
                 if let error = response.error {
                     let networkError = NetworkError(response: response.response, error: error)
                     // Do the cleanup, if failed, log
                     if !self.cleanup(false, fileURL: fileURL, conf.storeFailedUploads) {
-                        destination.owner?.warning("File handling operation of failed log upload failed!")
+                        logger?.warning("File handling operation of failed log upload failed!")
                     }
                     
                     completion?(.failure(.network(networkError)))
                 } else {
                     // Do the cleanup, if failed, log
                     if !self.cleanup(true, fileURL: fileURL, conf.storeSuccessfulUploads) {
-                        destination.owner?.warning("File handling operation of successful log upload failed!")
+                        logger?.warning("File handling operation of successful log upload failed!")
                     }
                     
                     completion?(.success)
