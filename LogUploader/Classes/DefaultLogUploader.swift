@@ -123,7 +123,10 @@ public struct DefaultLogUploader: LogUploader {
             
             // Execute method for all files
             for logFile in logFiles {
-                uploadFailedLog(logger: destination.owner, fileURL: logFile, conf: conf) { result in
+                let newURL = destURL.appendingPathComponent(logFile.lastPathComponent)
+                // Move file to the main directory to prevent issues during cleanup
+                try fileManager.moveItem(at: logFile, to: newURL)
+                uploadFailedLog(logger: destination.owner, fileURL: newURL, conf: conf) { result in
                     results.append(LUResult(destinationId: destination.identifier, logFileName: logFile.lastPathComponent, result: result))
                 }
             }
