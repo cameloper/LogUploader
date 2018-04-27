@@ -61,7 +61,7 @@ extension XCGLogger {
         uploader.upload(from: destination) { result in
             switch result {
             case .success:
-                destination.owner?.debug("LogUpload for destination \(destination) is successful")
+                destination.owner?.info("LogUpload for destination \(destination) is successful")
             case .failure(let error):
                 destination.owner?.error("LogUpload for destination \(destination) failed. Reason: \(error.displayMessage)")
             }
@@ -116,7 +116,7 @@ extension XCGLogger {
             for result in results {
                 switch result.result {
                 case .success:
-                    destination.owner?.debug("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) is successful.")
+                    destination.owner?.info("Upload of failed logfile \(result.logFileName!) from destination \(destination.identifier) is successful.")
                 case .failure(let error):
                     destination.owner?.error("Upload of failed logfile \(result.logFileName ?? "") from destination \(destination.identifier) failed. \(error.displayMessage)")
                 }
