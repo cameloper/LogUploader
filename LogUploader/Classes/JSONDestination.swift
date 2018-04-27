@@ -18,12 +18,13 @@ public class JSONDestination: CustomFileDestination {
     /// Write logs to JSON
     override public func output(log: Log) {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
         
         do {
             self.logFileHandle?.seekToEndOfFile()
             let jsonData = try encoder.encode(log)
             self.logFileHandle?.write(jsonData)
-            if let newLine = "\n".data(using: .utf8) {
+            if let newLine = ",".data(using: .utf8) {
                 self.logFileHandle?.write(newLine)
             }
         } catch let error {

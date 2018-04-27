@@ -189,14 +189,14 @@ open class StructDestination: DestinationProtocol {
             else {
                 if let threadName = Thread.current.name, !threadName.isEmpty {
                     // Print thread name if we're in a thread
-                    details.threadName = "T: \(threadName)"
+                    details.threadName = threadName
                 }
                 else if let queueName = DispatchQueue.currentQueueLabel, !queueName.isEmpty {
                     // Print queue name if we're in a DispachQueue
-                    details.threadName = "Q: \(queueName)"
+                    details.threadName = queueName
                 }
                 else {
-                    details.threadName = String(format: "T: %p", Thread.current)
+                    details.threadName = String(format: "%p", Thread.current)
                 }
             }
         }

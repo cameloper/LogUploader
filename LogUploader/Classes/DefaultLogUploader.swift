@@ -270,7 +270,7 @@ extension CustomFileDestination {
         // Set URL of upload file folder
         let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
         // Name of the file should be the current date in Apple's format
-        let date = Date().timeIntervalSinceReferenceDate
+        let date = Date().timeIntervalSince1970
         let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(self.defaultFileExtension)", isDirectory: true)
         
         do {
