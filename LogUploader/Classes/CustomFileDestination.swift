@@ -48,6 +48,8 @@ open class CustomFileDestination: StructDestination {
         // Assign the fileType parameter using fileExtension
         var configuration = uploaderConf
         configuration?.uploadConf.parameters["fileType"] = fileExtension.uppercased()
+        self.uploaderConfiguration = configuration
+        
         super.init(owner: owner, identifier: identifier)
         
         if owner != nil {

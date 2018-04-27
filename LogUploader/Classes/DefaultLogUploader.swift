@@ -83,6 +83,12 @@ public struct DefaultLogUploader: LogUploader {
         let fileManager = FileManager()
         
         do {
+            // If failed folder doesn't exist, return false
+            var objFalse: ObjCBool = false
+            if !fileManager.fileExists(atPath: failedURL.path, isDirectory: &objFalse) {
+                return false
+            }
+            
             // Get all files in folder
             let files = try fileManager.contentsOfDirectory(at: failedURL, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
             
