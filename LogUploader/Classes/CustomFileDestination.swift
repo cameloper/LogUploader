@@ -31,9 +31,7 @@ open class CustomFileDestination: StructDestination {
         }
     }
     
-    public var defaultFileExtension: String {
-        return self.fileURL.pathExtension
-    }
+    open let defaultFileExtension: String
     
     /// File handle for the log file
     open var logFileHandle: FileHandle? = nil
@@ -43,7 +41,13 @@ open class CustomFileDestination: StructDestination {
         
         self.fileURL = fileURL
         
-        self.uploaderConfiguration = uploaderConf
+        // Get the file extension from URL
+        let fileExtension = fileURL.pathExtension
+        self.defaultFileExtension = fileExtension
+        
+        // Assign the fileType parameter using fileExtension
+        var configuration = uploaderConf
+        configuration?.uploadConf.parameters["fileType"] = fileExtension.uppercased()
         super.init(owner: owner, identifier: identifier)
         
         if owner != nil {
