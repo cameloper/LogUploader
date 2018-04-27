@@ -45,17 +45,55 @@ public struct DefaultLogUploader: LogUploader {
                         destination.owner?.warning("File handling operation of failed log upload failed!")
                     }
                     completion?(.failure(.network(networkError)))
+                    
                 } else {
                     // Do the cleanup, if failed, log
                     if !self.cleanup(true, fileURL: uploadFileURL, conf.storeSuccessfulUploads) {
                         destination.owner?.warning("File handling operation of successful log upload failed!")
                     }
                     completion?(.success)
+                    // If configuration demands auto retrying of failed logs -
+                    if conf.autoRetryFailedUploads {
+                        switch self.hasFailedLogs(destination) {
+                        // - and there are failed logs to be uploaded,
+                        case true:
+                            // upload them.
+                            destination.owner?.info("Auto retrying the failed logs of \(destination.identifier)")
+                            self.uploadFailedLogs(from: destination, completion: nil)
+                        case false:
+                            destination.owner?.debug("Good to go! There are no failed logs to upload.")
+                        }
+                    }
                 }
             }
-            
         } catch (let error) {
             completion?(.failure(.missingRequest(error)))
+        }
+    }
+    
+    /// Returns whether the destination has failed logs or not
+    /// - parameter destination: The destination whose logs will be uploaded
+    /// - Returns:
+    ///     - true: The destination has failed logs that needs to be uploaded
+    ///     - false: The destination has no failed logs that needs to be uploaded
+    func hasFailedLogs(_ destination: CustomFileDestination) -> Bool {
+        // Get the base URL of destination and the failed folder URL
+        let destURL = homeURL.appendingPathComponent(destination.identifier, isDirectory: true)
+        let failedURL = destURL.appendingPathComponent("failed")
+        let fileManager = FileManager()
+        
+        do {
+            // Get all files in folder
+            let files = try fileManager.contentsOfDirectory(at: failedURL, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+            
+            // Filter files and get only with valid extension
+            let logFiles = files.filter { $0.pathExtension == destination.defaultFileExtension }
+            
+            return !logFiles.isEmpty
+            
+        } catch (let error) {
+            destination.owner?.warning("An error occured when trying to get the failed logs of \(destination.identifier). Returning false! \(error)")
+            return false
         }
     }
     
@@ -197,7 +235,6 @@ public struct DefaultLogUploader: LogUploader {
         
         return urlRequest
     }
-    
 }
 
 /// Extension to handle the file operation DefaultLogUploader requires
