@@ -219,7 +219,11 @@ public struct DefaultLogUploader: LogUploader {
         
         // Get the log file as data to append it in parameters
         let logFileData = try Data(contentsOf: fileUrl).base64EncodedString()
-        conf.parameters["logFile"] = logFileData
+        conf.parameters["logFileData"] = logFileData
+        
+        // Add date as parameter using file name. This'll help especially with old (failed) uploads.
+        let fileName = fileUrl.deletingPathExtension().lastPathComponent
+        conf.parameters["date"] = fileName
         
         var urlRequest = try URLRequest(url: conf.requestURL, method: .post)
         
