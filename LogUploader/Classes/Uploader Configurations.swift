@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import XCGLogger
 
+/// Struct that holds the networking/request settings etc.
 public struct LogUploadConfiguration {
     /// The URL for the POST request
     var requestURL: URL
@@ -57,7 +58,7 @@ public struct LogUploadConfiguration {
     }
 }
 
-/// Struct that stores all the required parameters etc. for the networking of uploader
+/// Struct that holds the preferences for uploader
 public struct LogUploaderConfiguration {
     /// Identifier of the uploader that will be used for the operation.
     var uploader: LogUploader
