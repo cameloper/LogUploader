@@ -58,12 +58,10 @@ open class StructDestination: DestinationProtocol {
     }
     
     // MARK: - Processing methods
-    /// Process the log details (internal use, same as process(logDetails:) but omits function/file/line info).
+    /// Process the log details (internal use, same as process(logDetails:) but omits
+    /// function/file/line info).
     ///
-    /// - Parameter logDetails:   Structure with all of the details for the log to process.
-    ///
-    /// - Returns:  Nothing
-    ///
+    /// - parameter logDetails:   Structure with all of the details for the log to process.
     open func processInternal(logDetails: LogDetails) {
         let outputClosure = {
             // Create mutable versions of our parameters
@@ -87,6 +85,7 @@ open class StructDestination: DestinationProtocol {
             self.output(log: log)
         }
         
+        // If there's a queue of logs that are waiting, execute them
         if let logQueue = logQueue {
             logQueue.async(execute: outputClosure)
         }
@@ -97,12 +96,11 @@ open class StructDestination: DestinationProtocol {
     
     /// Check if the destination's log level is equal to or lower than the specified level.
     ///
-    /// - Parameter level: The log level to check.
+    /// - parameter level: The log level to check.
     ///
     /// - Returns:
     ///     - true:     Log destination is at the log level specified or lower.
     ///     - false:    Log destination is at a higher log level.
-    ///
     open func isEnabledFor(level: XCGLogger.Level) -> Bool {
         return level >= self.outputLevel
     }
@@ -117,8 +115,6 @@ open class StructDestination: DestinationProtocol {
     /// Process the log details.
     ///
     /// - Parameter logDetails: Structure with all of the details for the log to process.
-    /// - Returns:  Nothing
-    ///
     open func process(logDetails: LogDetails) {
         let outputClosure = {
             // Create mutable versions of our parameters
@@ -147,9 +143,7 @@ open class StructDestination: DestinationProtocol {
     
     /// Pass the created struct to overriding method
     ///
-    /// - Parameter log: The created log object
-    /// - Returns:  Nothing
-    ///
+    /// - parameter log: The created log object
     open func output(log: Log) {
         // Do something with the text in an overridden version of this method
         precondition(false, "Must override this")
@@ -158,9 +152,8 @@ open class StructDestination: DestinationProtocol {
     /// Converts the logDetails object to codable Log struct.
     /// Does not include the not-wanted parameters.
     ///
-    /// - Parameter logDetails: LogDetails object that will get converted
-    /// - Returns: Codable Log struct
-    ///
+    /// - parameter logDetails: LogDetails object that will get converted
+    /// - returns: Codable Log struct
     open func createCodableDetails(logDetails: LogDetails) -> Log {
         var details = Log(logDetails)
         
@@ -189,14 +182,14 @@ open class StructDestination: DestinationProtocol {
             else {
                 if let threadName = Thread.current.name, !threadName.isEmpty {
                     // Print thread name if we're in a thread
-                    details.threadName = "T: \(threadName)"
+                    details.threadName = threadName
                 }
                 else if let queueName = DispatchQueue.currentQueueLabel, !queueName.isEmpty {
                     // Print queue name if we're in a DispachQueue
-                    details.threadName = "Q: \(queueName)"
+                    details.threadName = queueName
                 }
                 else {
-                    details.threadName = String(format: "T: %p", Thread.current)
+                    details.threadName = String(format: "%p", Thread.current)
                 }
             }
         }

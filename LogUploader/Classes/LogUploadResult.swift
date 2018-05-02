@@ -7,6 +7,28 @@
 
 import Foundation
 
+/// Completion closure for single log upload
+/// - parameter result: Result of the upload
+public typealias LogUploadCompletion = (_ result: LogUploadResult<LogUploadError>) -> Void
+/// Completion closure for operation with multiple LogUploads such as `uploadFailed(_:)`
+/// - parameter results: Dictionary of results with name of LogFile and its result
+///     - key: Name of LogFile. "`n/A`" for uploads that failed before getting the Uploader
+///     - value: Result of upload
+public typealias LogUploadsCompletion = (_ results: LUResults) -> Void
+/// Typealias to make an array of `LUResult` more compact
+public typealias LUResults = [LUResult]
+
+/// Log Uploader Result struct for multiple uploads
+public struct LUResult {
+    /// ID of the destination
+    public var destinationId: String
+    /// Name of the logfile
+    public var logFileName: String?
+    /// Result enum object
+    public var result: LogUploadResult<LogUploadError>
+}
+
+/// Swift result enum for LogUpload
 public enum LogUploadResult<CustomError: Error> {
     case success
     case failure(CustomError)

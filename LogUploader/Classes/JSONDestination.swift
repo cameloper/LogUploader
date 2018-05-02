@@ -8,6 +8,7 @@
 import Foundation
 import XCGLogger
 
+/// CustomFileDestination that writes the logs in a JSON file
 public class JSONDestination: CustomFileDestination {
     
     public required override init(owner: XCGLogger?, fileURL: URL, identifier: String, uploaderConf: LogUploaderConfiguration?) {
@@ -16,18 +17,22 @@ public class JSONDestination: CustomFileDestination {
     }
     
     /// Write logs to JSON
+    /// - paramter log: Log object that'll be written in the file
     override public func output(log: Log) {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
         
         do {
+            // Write new logs at the end of the file
             self.logFileHandle?.seekToEndOfFile()
             let jsonData = try encoder.encode(log)
             self.logFileHandle?.write(jsonData)
-            if let newLine = "\n".data(using: .utf8) {
+            // Write comma after log since our file should be a json array
+            if let newLine = ",".data(using: .utf8) {
                 self.logFileHandle?.write(newLine)
             }
         } catch let error {
-            print("Exception occured: \(error)")
+            self.owner?.error("Exception occured while trying to write logs of \(self.identifier). \(error)")
         }
     }
     

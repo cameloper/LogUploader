@@ -8,11 +8,7 @@
 import Foundation
 import XCGLogger
 
-/// Codable LogFile struct to read and write all the logs in an array
-public struct LogFile: Codable {
-    var logs: [Log]
-}
-
+/// Codable log struct that'll be used to create JSON easily
 public struct Log: Codable {
     
     /// Codable enum for the Level variable in LogDetails
@@ -47,7 +43,7 @@ public struct Log: Codable {
     public var date: Date?
     
     /// The log message to display
-    public var message: String?
+    public var message: String
     
     /// Name of the function that generated this log
     public var functionName: String?
