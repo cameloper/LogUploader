@@ -65,7 +65,7 @@ public struct DefaultLogUploader: LogUploader {
                             destination.owner?.info("Auto retrying the failed logs of \(destination.identifier)")
                             self.uploadFailedLogs(from: destination, completion: nil)
                         case false:
-                            destination.owner?.debug("Good to go! There are no failed logs to upload.")
+                            destination.owner?.debug("Good to go! There are no failed logs to upload from destination \(destination.identifier).")
                         }
                     }
                 }

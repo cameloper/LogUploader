@@ -44,12 +44,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func uploadLogs(_ sender: Any) {
-        log.uploadLogs(from: "logger.jsonLogger") { result in
-            switch result {
-            case .success:
-                self.logMsg(text: "Log upload successful")
-            case .failure(let error):
-                self.logMsg(text: "Log upload failed. \(error)")
+        log.uploadLogs() { results in
+            for result in results {
+                self.logMsg(text: "LogUpload of \(result.destinationId) failed. \(String(describing: result.result.error))")
             }
         }
     }

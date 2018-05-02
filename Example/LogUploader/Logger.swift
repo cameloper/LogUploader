@@ -16,21 +16,29 @@ let log: XCGLogger = {
     log.setup(level: .debug, showFunctionName: false, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true)
     let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     let logFileURL = URL(fileURLWithPath: documentsPath + "/xcglog.json")
+    let secondLogFileURL = URL(fileURLWithPath: documentsPath + "/xcglog2.json")
     
     let requestUrl = URL(string: "http://localhost:8080/")
+    let secondRequestUrl = URL(string: "http://localhost:8081/")
     
     let conf = LogUploaderConfiguration(uploader: DefaultLogUploader(),
                                         uploadConf: LogUploadConfiguration(requestURL: requestUrl!))
-    let jsonDestination = JSONDestination(owner: log, fileURL: logFileURL, identifier: "logger.jsonLogger", uploaderConf: conf)
     
-    jsonDestination.showDate = true
-    jsonDestination.showLevel = true
-    jsonDestination.showThreadName = true
-    jsonDestination.showLogIdentifier = false
+    let uploadConf = LogUploadConfiguration(requestURL: secondRequestUrl!) {
+        return ["token": "1234567890"]
+    }
+    
+    let secondConf = LogUploaderConfiguration(uploader: DefaultLogUploader(), uploadConf: uploadConf, storeSuccessfulUploads: true)
+    
+    let jsonDestination = JSONDestination(owner: log, fileURL: logFileURL, identifier: "logger.jsonLogger", uploaderConf: conf)
+    jsonDestination.showLogIdentifier = true
     
     jsonDestination.logQueue = XCGLogger.logQueue
     log.add(destination: jsonDestination)
-    log.logAppDetails()
+    
+    let secondJsonDestination = JSONDestination(owner: log, fileURL: secondLogFileURL, identifier: "logger.scndJsonLogger", uploaderConf: secondConf)
+    secondJsonDestination.showLogIdentifier = true
+    log.add(destination: secondJsonDestination)
     
     log.logAppDetails()
     

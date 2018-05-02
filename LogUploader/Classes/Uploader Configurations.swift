@@ -71,8 +71,8 @@ public struct LogUploaderConfiguration {
     var storeFailedUploads: Bool
     /// Boolean that decides if the failed and stored uploads should be
     /// automatically retried to upload after next successful upload.
-    /// - precondition: `storeFailedUploads == true`
     /// - default value: `true`
+    /// - precondition: `storeFailedUploads == true`
     var autoRetryFailedUploads: Bool
     /// Boolean that decides if the successful log uploads should be
     /// stored in the device until they get manually deleted.
