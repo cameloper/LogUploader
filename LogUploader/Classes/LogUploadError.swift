@@ -15,6 +15,7 @@ public enum LogUploadError: Error {
     case missingRequest(Error)
     case network(NetworkError)
     
+    /// User-friendly message that may be shown
     var displayMessage: String {
         switch self {
         case .missingDestination:

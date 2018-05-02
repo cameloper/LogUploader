@@ -14,11 +14,11 @@ import XCGLogger
 open class CustomFileDestination: StructDestination {
     /// Logger that owns the destination object
     open override var owner: XCGLogger? {
+        // Open/close the file when the owner is set
         didSet {
             if owner != nil {
                 openFile()
-            }
-            else {
+            } else {
                 closeFile()
             }
         }
@@ -31,10 +31,13 @@ open class CustomFileDestination: StructDestination {
         }
     }
     
+    /// Default extension of the file logs will be saved in
     open let defaultFileExtension: String
     
     /// File handle for the log file
     open var logFileHandle: FileHandle? = nil
+    
+    /// Configuration struct that holds the upload settings
     open var uploaderConfiguration: LogUploaderConfiguration?
     
     public init(owner: XCGLogger? = nil, fileURL: URL, identifier: String = "", uploaderConf: LogUploaderConfiguration?) {
@@ -58,15 +61,17 @@ open class CustomFileDestination: StructDestination {
     }
     
     deinit {
-        // close file stream if open
+        // Close file stream if open
         closeFile()
     }
     
+    /// Opens the destination file using a file handler
     open func openFile() {
         guard let owner = owner else {
             return
         }
         
+        // Make sure that the logfile is not present
         if logFileHandle != nil {
             closeFile()
         }
@@ -86,7 +91,6 @@ open class CustomFileDestination: StructDestination {
     }
     
     /// Close the log file.
-    ///
     open func closeFile() {
         logFileHandle?.synchronizeFile()
         logFileHandle?.closeFile()
@@ -94,9 +98,7 @@ open class CustomFileDestination: StructDestination {
     }
     
     /// Force any buffered data to be written to the file.
-    ///
     /// - parameter closure: An optional closure to execute after the file has been flushed.
-    ///
     open func flush(closure: (() -> Void)? = nil) {
         if let logQueue = logQueue {
             logQueue.async {

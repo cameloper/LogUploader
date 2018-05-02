@@ -8,6 +8,7 @@
 import Foundation
 import XCGLogger
 
+/// Extension of XCGLogger class that holds the upload methods for first access
 extension XCGLogger {
     
     /// Try to upload all logs from all destinations that have a configuration
@@ -43,12 +44,12 @@ extension XCGLogger {
         self.uploadLogs(from: destination, completion: completion)
     }
     
-    /// Upload the saved log file for a destination with the given identifier
+    /// Upload the saved log file for the given destination
     /// - Parameters:
     ///     - destination: The destination which'll be the source of logs
     ///     - completion: Returns the result of upload operation. Use to handle errors etc.
     private func uploadLogs(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
-        // Then get the configuration
+        // Get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?(.failure(.missingConfiguration))
             return
@@ -85,7 +86,7 @@ extension XCGLogger {
         completion?(output)
     }
     
-    /// Try to upload the previous failed logfiles
+    /// Try to upload the previous failed logfiles for destination with given identifier
     /// - Parameters:
     ///     - destinationId: Identifier of the destination we'll try to upload logs for
     ///     - completion: Completion closure that passes the results
@@ -99,6 +100,10 @@ extension XCGLogger {
         uploadFailedLogs(from: destination, completion: completion)
     }
     
+    /// Try to upload the previous failed logfiles for the given destination
+    /// - Parameters:
+    ///     - destination: The destination which'll be the source of failed logFiles
+    ///     - completion: Returns the result of upload operation. Use to handle errors etc.
     func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
         // Then get the configuration
         guard let conf = destination.uploaderConfiguration else {

@@ -11,6 +11,7 @@ import XCGLogger
 
 public struct DefaultLogUploader: LogUploader {
     
+    /// URL of the uploader folder.
     public let homeURL: URL
     
     /// Public initializer
@@ -34,6 +35,7 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         do {
+            // First get the URL request for upload
             let urlRequest = try generateUrlRequest(fileUrl: uploadFileURL, conf: conf)
             
             // Make request and get response from server
@@ -44,6 +46,7 @@ public struct DefaultLogUploader: LogUploader {
                     if !self.cleanup(false, fileURL: uploadFileURL, conf.storeFailedUploads) {
                         destination.owner?.warning("File handling operation of failed log upload failed!")
                     }
+                    
                     completion?(.failure(.network(networkError)))
                     
                 } else {
@@ -51,6 +54,7 @@ public struct DefaultLogUploader: LogUploader {
                     if !self.cleanup(true, fileURL: uploadFileURL, conf.storeSuccessfulUploads) {
                         destination.owner?.warning("File handling operation of successful log upload failed!")
                     }
+                    
                     completion?(.success)
                     // If configuration demands auto retrying of failed logs -
                     if conf.autoRetryFailedUploads {
@@ -66,6 +70,7 @@ public struct DefaultLogUploader: LogUploader {
                     }
                 }
             }
+            
         } catch (let error) {
             completion?(.failure(.missingRequest(error)))
         }
@@ -141,7 +146,7 @@ public struct DefaultLogUploader: LogUploader {
         }
     }
     
-    /// Gets the failed logs from before and uploads them
+    /// Gets the failed logs from before and passes them to `uploadFailedLog` method
     /// - Parameters:
     ///     - destination: The CustomFileDestination we'll upload the logs from
     ///     - completion: Completion closure that passes the results
@@ -183,10 +188,11 @@ public struct DefaultLogUploader: LogUploader {
     }
     
     /// Uploads the failed logFile
-    /// - Paremeters:
-    ///     - destination: The source destination
+    /// - Parameters:
+    ///     - logger: The XCGLogger object to be able to log errors etc.
     ///     - fileURL: LogFile that'll be uploaded
     ///     - conf: Configuration file for the upload
+    ///     - completion: The completion closure that passes the result
     func uploadFailedLog(logger: XCGLogger?, fileURL: URL, conf: LogUploaderConfiguration, completion: LogUploadCompletion?) {
         do {
             // Generate URL request

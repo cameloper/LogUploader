@@ -15,7 +15,7 @@ public typealias LogUploadCompletion = (_ result: LogUploadResult<LogUploadError
 ///     - key: Name of LogFile. "`n/A`" for uploads that failed before getting the Uploader
 ///     - value: Result of upload
 public typealias LogUploadsCompletion = (_ results: LUResults) -> Void
-/// Typealias to make it more compact
+/// Typealias to make an array of `LUResult` more compact
 public typealias LUResults = [LUResult]
 
 /// Log Uploader Result struct for multiple uploads
