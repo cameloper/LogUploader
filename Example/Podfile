@@ -6,8 +6,8 @@ source 'https://github.com/cameloper/Podspec'
 use_frameworks!
 
 target 'LogUploader_Example' do
-  #pod 'LogUploader', :path => '../'
-  pod 'LogUploader'
+  pod 'LogUploader', :path => '../'
+  #pod 'LogUploader'
   target 'LogUploader_Tests' do
     inherit! :search_paths
 
