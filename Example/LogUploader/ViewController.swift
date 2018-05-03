@@ -28,6 +28,7 @@ class ViewController: UIViewController {
             return
         }
         
+        txtNewLog.text = ""
         logMsg(text: text)
     }
     
