@@ -1,6 +1,6 @@
 {
   "name": "LogUploader",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "summary": "Upload your XCGLogger logs to your own server easily!",
   "description": "LogUploader helps you upload all your app logs whenever you want to your own server. Without any limitations or costs.\n\nIt uses XCGLogger which you can configure in minutes and saves all the logs in a file format you want. Then uploads your logs to your server. Adding an uploadable destination is even easier than setting up XCGLogger.\n\nVisit GitHub page for tutorial and examples.",
   "homepage": "https://github.com/cameloper/LogUploader",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/cameloper/LogUploader.git",
-    "tag": "0.1.0"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
