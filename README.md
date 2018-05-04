@@ -23,9 +23,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-LogUploder is currently in development but will be released in CocaPods once it's ready. It's useable tho!
-
-Simply create a new folder named LogUploaderPod, copy LogUploader folder and `.podspec` file to it and add `pod 'Alamofire', :path => './LogUploader'` in your podfile.
+LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'` and add `pod 'LogUploader'` in your Podfile.
 
 We appreciate any kind of contribution!
 <!--LogUploader is available through [CocoaPods](http://cocoapods.org). To install-->
