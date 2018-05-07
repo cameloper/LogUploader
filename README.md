@@ -23,7 +23,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'` and add `pod 'LogUploader'` in your Podfile.
+LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'`, then add `source 'https://github.com/cameloper/LogUploader'
+` and `pod 'LogUploader'` in your Podfile.
 
 We appreciate any kind of contribution!
 <!--LogUploader is available through [CocoaPods](http://cocoapods.org). To install-->
