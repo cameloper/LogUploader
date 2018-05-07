@@ -98,6 +98,7 @@
 		89C7D3224BDBF47EA4B18F578CA67FF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13DBF275E4606764BEE6C2DA77A9F1F /* Foundation.framework */; };
 		8B55BD430033027AD5FF22D630DD9F62 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D18CF6B6FFF3E619A6A9950AA50B43 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8C0D9CAACB2DE376E5B590A692E922DC /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F38C18B03A46248BE8F0347CB58DF1 /* BaseDestination.swift */; };
+		8C1932B920A08A7300C1A047 /* XCGLogger Cleanup Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1932B820A08A7300C1A047 /* XCGLogger Cleanup Extension.swift */; };
 		8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */; };
 		8CFC6B13208A1C5F004DD255 /* XCGLogger Uploader Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC6B12208A1C5F004DD255 /* XCGLogger Uploader Extension.swift */; };
 		8D2FEA5689A48EA26F498176A7C8097A /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EC30A18936882F52060072F955C59E /* Behavior.swift */; };
@@ -385,6 +386,7 @@
 		8A5F76042A6BA466269B4FC34C35BC8B /* Contain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Contain.swift; path = Sources/Nimble/Matchers/Contain.swift; sourceTree = "<group>"; };
 		8AB1F05851CDF4A41EDD1DF45E43A0C3 /* XcodeColorsLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XcodeColorsLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/XcodeColorsLogFormatter.swift; sourceTree = "<group>"; };
 		8B96738423D312DAFBA72CCFEDBBDDAD /* Pods-LogUploader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LogUploader_Example.release.xcconfig"; sourceTree = "<group>"; };
+		8C1932B820A08A7300C1A047 /* XCGLogger Cleanup Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "XCGLogger Cleanup Extension.swift"; path = "LogUploader/Classes/XCGLogger Cleanup Extension.swift"; sourceTree = "<group>"; };
 		8C7C88215211D33BAB8FC8C65CB4A2AE /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
 		8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Uploader Configurations.swift"; path = "LogUploader/Classes/Uploader Configurations.swift"; sourceTree = "<group>"; };
 		8CFC6B12208A1C5F004DD255 /* XCGLogger Uploader Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "XCGLogger Uploader Extension.swift"; path = "LogUploader/Classes/XCGLogger Uploader Extension.swift"; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				8CDBA674208A230E00BBAC54 /* Uploader Configurations.swift */,
 				94EED1E70E85B70EF9A44F90125248E0 /* Pod */,
 				E5F6B16B3E4AD13145E823206B28BCD7 /* Support Files */,
+				8C1932B820A08A7300C1A047 /* XCGLogger Cleanup Extension.swift */,
 			);
 			name = LogUploader;
 			path = ../..;
@@ -1470,6 +1473,7 @@
 				F74DEDB39EE9A5B6521317392ABF0F3E /* JSONDestination.swift in Sources */,
 				D96E96F4A0EB636876D4D3280A2FD52B /* Log Struct.swift in Sources */,
 				1EBEC5CEFF3ADAA014F1B96872F0A280 /* LogUploader-dummy.m in Sources */,
+				8C1932B920A08A7300C1A047 /* XCGLogger Cleanup Extension.swift in Sources */,
 				DF91B941586E7AB0FF5D6EDE93CDF36D /* LogUploader Protocol.swift in Sources */,
 				8CDBA675208A230E00BBAC54 /* Uploader Configurations.swift in Sources */,
 				DFC076130982D9C6EAAE0796234986F2 /* LogUploadError.swift in Sources */,
