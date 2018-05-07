@@ -14,10 +14,33 @@ extension XCGLogger {
     /// Delete all log files that are strored
     /// - Returns: Boolean: Is cleanup successful
     public func deleteAllLogFiles() -> Bool {
-        var result = true
+        // Get all Custom File Destinations
+        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        let uploaderFolders = Set<URL>(destinations.compactMap {
+            $0.uploaderConfiguration?.uploader.homeURL
+        })
         
+        // If empty, return false
+        guard !uploaderFolders.isEmpty else {
+            self.warning("There are no uploaders with existing logfiles!")
+            return true
+        }
         
+        let fileManager = FileManager()
         
-        return result
+        // For all uploader folders...
+        for folderURL in uploaderFolders {
+            do {
+                // ...get contents...
+                let contents = try fileManager.contentsOfDirectory(atPath: folderURL.path)
+                // ...and delete them.
+                try contents.forEach { try fileManager.removeItem(atPath: $0) }
+            } catch (let error) {
+                self.error("An error occured when trying to delete contents of \(folderURL.path). Reason: \(error)")
+                return false
+            }
+        }
+        
+        return true
     }
 }
