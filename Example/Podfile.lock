@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.7.2)
-  - LogUploader (0.1.0):
+  - LogUploader (0.1.2):
     - Alamofire (~> 4.7.2)
     - XCGLogger (~> 6.0.2)
   - Nimble (7.0.3)
@@ -32,12 +32,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  LogUploader: 348bc21ff38be4621ca167f54954f64b312cf194
+  LogUploader: 878383e3ca905ac192f8a1dce6f2c18f6f5cbece
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 03887d7d6220a72679ca6b397ff908d579dc8a4e
+PODFILE CHECKSUM: 4a62051faced3e1b2ccdd3cf081684d250c0489e
 
 COCOAPODS: 1.5.0
