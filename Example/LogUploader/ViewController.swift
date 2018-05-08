@@ -51,6 +51,13 @@ class ViewController: UIViewController {
             }
         }
     }
+    @IBAction func cleanall(_ sender: Any) {
+        log.deleteAllLogFiles()
+    }
+    
+    @IBAction func cleans(_ sender: Any) {
+        log.deleteSuccessfulLogFiles()
+    }
     
 }
 

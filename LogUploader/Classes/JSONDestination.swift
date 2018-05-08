@@ -11,9 +11,9 @@ import XCGLogger
 /// CustomFileDestination that writes the logs in a JSON file
 public class JSONDestination: CustomFileDestination {
     
-    public required override init(owner: XCGLogger?, fileURL: URL, identifier: String, uploaderConf: LogUploaderConfiguration?) {
+    public required override init(owner: XCGLogger?, fileURL: URL, identifier: String, uploaderConf: LogUploaderConfiguration?, uploadFolderURL: URL? = nil) {
         // Initialize superclass
-        super.init(owner: owner, fileURL: fileURL, identifier: identifier, uploaderConf: uploaderConf)
+        super.init(owner: owner, fileURL: fileURL, identifier: identifier, uploaderConf: uploaderConf, uploadFolderURL: uploadFolderURL)
     }
     
     /// Write logs to JSON
