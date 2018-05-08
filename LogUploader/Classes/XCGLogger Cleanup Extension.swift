@@ -16,13 +16,11 @@ extension XCGLogger {
     public func deleteAllLogFiles() -> Bool {
         // Get all Custom File Destinations
         let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
-        let uploaderFolders = Set<URL>(destinations.compactMap {
-            $0.uploaderConfiguration?.uploader.homeURL
-        })
+        let uploaderFolders = destinations.compactMap { $0.uploadFolderURL }
         
         // If empty, return false
         guard !uploaderFolders.isEmpty else {
-            self.warning("There are no uploaders with existing logfiles!")
+            self.warning("There are no destinations with log upload folders!")
             return true
         }
         
@@ -35,34 +33,33 @@ extension XCGLogger {
     public func deleteSuccessfulLogFiles() -> Bool {
         // Get all Custom File Destinations
         let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
-        let uploaderFolders = Set<URL>(destinations.compactMap {
-            $0.uploaderConfiguration?.uploader.homeURL
-        })
+        // Filter and get the ones that store successful uploads
+        let destinationsStoringSuccessful = destinations.filter { $0.uploaderConfiguration?.storeSuccessfulUploads ?? false }
+        // Get upload folder URLs
+        let uploaderFolders = destinationsStoringSuccessful.compactMap { $0.uploadFolderURL }
+        // Create successful folder URLs
+        let successfulFolders = uploaderFolders.compactMap { $0.appendingPathComponent("successful", isDirectory: true) }
         
         // If empty, return false
-        guard !uploaderFolders.isEmpty else {
-            self.warning("There are no uploaders with existing logfiles!")
+        guard !successfulFolders.isEmpty else {
+            self.warning("There are no destinations with successful log upload folders!")
             return true
         }
         
-        // Get folders for successful uploads
-        let successfulFolders = uploaderFolders.map { $0.appendingPathComponent("successful", isDirectory: true) }
-        
         // Delete contents and return result
-        return deleteContents(of: Set(successfulFolders))
-        
+        return deleteContents(of: successfulFolders)
     }
     
     /// Deletes contents of given folders
-    func deleteContents(of folders: Set<URL>) -> Bool {
+    func deleteContents(of folders: [URL]) -> Bool {
         let fileManager = FileManager()
         // For all folders...
         for folderURL in folders {
             do {
                 // ...get contents...
-                let contents = try fileManager.contentsOfDirectory(atPath: folderURL.path)
+                let contents = try fileManager.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil, options: [])
                 // ...and delete them.
-                try contents.forEach { try fileManager.removeItem(atPath: $0) }
+                try contents.forEach { try fileManager.removeItem(at: $0) }
             } catch (let error) {
                 self.error("An error occured when trying to delete contents of \(folderURL.path). Reason: \(error)")
                 return false
