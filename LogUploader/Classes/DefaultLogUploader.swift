@@ -21,7 +21,7 @@ public struct DefaultLogUploader: LogUploader {
     }
     
     /// Begin the process of log uploading
-    public func upload(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
+    public func upload(from destination: UploadableFileDestination, completion: LogUploadCompletion?) {
         // First get the configuration struct
         guard let conf = destination.uploaderConfiguration else {
             completion?(.failure(.missingConfiguration))
@@ -81,7 +81,7 @@ public struct DefaultLogUploader: LogUploader {
     /// - Returns:
     ///     - true: The destination has failed logs that needs to be uploaded
     ///     - false: The destination has no failed logs that needs to be uploaded
-    func hasFailedLogs(_ destination: CustomFileDestination) -> Bool {
+    func hasFailedLogs(_ destination: UploadableFileDestination) -> Bool {
         // Get the base URL of destination and the failed folder URL
         let destURL = homeURL.appendingPathComponent(destination.identifier, isDirectory: true)
         let failedURL = destURL.appendingPathComponent("failed")
@@ -150,7 +150,7 @@ public struct DefaultLogUploader: LogUploader {
     /// - Parameters:
     ///     - destination: The CustomFileDestination we'll upload the logs from
     ///     - completion: Completion closure that passes the results
-    public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
+    public func uploadFailedLogs(from destination: UploadableFileDestination, completion: LogUploadsCompletion?) {
         // Get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.missingConfiguration))])
