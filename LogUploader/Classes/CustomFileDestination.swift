@@ -37,27 +37,13 @@ open class CustomFileDestination: StructDestination {
     /// File handle for the log file
     open var logFileHandle: FileHandle? = nil
     
-    /// Configuration struct that holds the upload settings
-    open var uploaderConfiguration: LogUploaderConfiguration?
-    
-    /// URL of the folder uploads will be saved to
-    /// There can't be any other files except LogUploads in this folder
-    var uploadFolderURL: URL?
-    
-    public init(owner: XCGLogger? = nil, fileURL: URL, identifier: String = "", uploaderConf: LogUploaderConfiguration?, uploadFolderURL: URL? = nil) {
+    public init(owner: XCGLogger? = nil, fileURL: URL, identifier: String = "") {
         
         self.fileURL = fileURL
         
         // Get the file extension from URL
         let fileExtension = fileURL.pathExtension
         self.defaultFileExtension = fileExtension
-        
-        // Assign the fileType parameter using fileExtension
-        var configuration = uploaderConf
-        configuration?.uploadConf.parameters["fileType"] = fileExtension.uppercased()
-        self.uploaderConfiguration = configuration
-        
-        self.uploadFolderURL = uploadFolderURL ?? configuration?.uploader.homeURL.appendingPathComponent(identifier, isDirectory: true)
         
         super.init(owner: owner, identifier: identifier)
         

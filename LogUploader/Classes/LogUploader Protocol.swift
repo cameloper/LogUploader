@@ -7,11 +7,21 @@
 
 import Foundation
 
+/// Combination of protocol and superclass for destinations that are suitable for upload
 public typealias UploadableFileDestination = Uploadable & CustomFileDestination
 
+/// Protocol for destinations that are suitable for upload.
+/// Use `UploadableFileDestination` for your custom destinations since it inherits from
+/// `CustomFileDestination` as well
 public protocol Uploadable {
     /// Method that handles the operations of logfile to prepare it for uploading
-    func prepareForUpload()
+    /// - Returns: URL of the file that'll be uploaded.
+    func prepareForUpload() -> URL?
+    /// Configuration struct that holds the upload settings
+    var uploaderConfiguration: LogUploaderConfiguration? { get set }
+    /// URL of the folder uploads will be saved to
+    /// There can't be any other files except LogUploads in this folder
+    var uploadFolderURL: URL? { get set }
 }
 
 /// The protocol LogUploaders must conform to

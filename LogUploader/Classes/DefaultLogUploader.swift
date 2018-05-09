@@ -29,7 +29,7 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         // Get the url of upload file which was moved
-        guard let uploadFileURL = destination.prepareFileForUpload() else {
+        guard let uploadFileURL = destination.prepareForUpload() else {
             completion?(.failure(.logFileError))
             return
         }
@@ -250,60 +250,5 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         return urlRequest
-    }
-}
-
-/// Extension to handle the file operation DefaultLogUploader requires
-extension CustomFileDestination {
-    
-    /// Move the file to a new location before starting the upload
-    /// to allow new logs to be written during upload process
-    open func prepareFileForUpload() -> URL? {
-        // Close file to prevent conflicts
-        self.closeFile()
-        let fileManager = FileManager()
-        guard fileManager.fileExists(atPath: fileURL.path) else {
-            // File or url doesn't exist
-            return nil
-        }
-        
-        // Get the home url of our logger
-        guard let homeURL = self.uploaderConfiguration?.uploader.homeURL else {
-            // Home folder URL isn't present
-            return nil
-        }
-        
-        // Set URL of upload file folder
-        let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
-        // Name of the file should be the current date in Apple's format
-        let date = Date().timeIntervalSince1970
-        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(self.defaultFileExtension)", isDirectory: true)
-        
-        do {
-            // Check if destination exist and if not, create folder
-            var objTrue: ObjCBool = true
-            if !fileManager.fileExists(atPath: uploadFolderURL.path, isDirectory: &objTrue) {
-                try fileManager.createDirectory(at: uploadFolderURL, withIntermediateDirectories: true, attributes: nil)
-            }
-            
-            // Delete existing upload file
-            if fileManager.fileExists(atPath: uploadFileURL.path) {
-                try fileManager.removeItem(at: uploadFileURL)
-            }
-            
-            //  Move log file
-            try fileManager.moveItem(at: fileURL, to: uploadFileURL)
-            
-        } catch (let error) {
-            self.owner?.error("An error occured during file operations. \(error)")
-            return nil
-        }
-        
-        // Open file
-        self.openFile()
-        // Write all waiting logs
-        self.flush()
-        
-        return uploadFileURL
     }
 }
