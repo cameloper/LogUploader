@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     func logMsg(text: String) {
-        log.debug(txtNewLog.text)
+        log.debug(text)
         txtLogs.text = "\(txtLogs.text ?? "")\n>\(text)"
     }
     @IBAction func uploadFailed(_ sender: Any) {
