@@ -105,7 +105,7 @@ public class JSONDestination: UploadableFileDestination {
         
     }
     
-    public func prepareForUpload() -> URL? {
+    public func moveForUpload() -> URL? {
         
         let fileManager = FileManager()
         guard fileManager.fileExists(atPath: fileURL.path) else {
