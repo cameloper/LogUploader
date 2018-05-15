@@ -266,7 +266,7 @@ public struct DefaultLogUploader: LogUploader {
         
         let homeURL = uploaderConfiguration.uploader.homeURL
         let uploadFolderURL = homeURL.appendingPathComponent("\(destination.identifier)", isDirectory: true)
-        // Name of the file should be the current date in Apple's format
+        // Name of the file should be the current date in Unix Timestamp format
         let date = Date().timeIntervalSince1970
         let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(destination.defaultFileExtension)", isDirectory: true)
         
