@@ -30,7 +30,7 @@ public struct DefaultLogUploader: LogUploader {
         
         // Get the url of upload file which was moved
         guard destination.finalize(),
-            let uploadFileURL = destination.moveForUpload() else {
+            let uploadFileURL = moveForUpload(destination: destination) else {
             completion?(.failure(.logFileError))
             return
         }
@@ -251,5 +251,50 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         return urlRequest
+    }
+    
+    /// Method that handles the operations of logfile to prepare it for uploading
+    /// - Returns: URL of the file that'll be uploaded.
+    public func moveForUpload(destination: UploadableFileDestination) -> URL? {
+        let fileURL = destination.fileURL
+        let fileManager = FileManager()
+        guard fileManager.fileExists(atPath: fileURL.path),
+            let uploaderConfiguration = destination.uploaderConfiguration else {
+            // File or url doesn't exist
+            return nil
+        }
+        
+        let homeURL = uploaderConfiguration.uploader.homeURL
+        let uploadFolderURL = homeURL.appendingPathComponent("\(destination.identifier)", isDirectory: true)
+        // Name of the file should be the current date in Apple's format
+        let date = Date().timeIntervalSince1970
+        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(destination.defaultFileExtension)", isDirectory: true)
+        
+        do {
+            // Check if destination exist and if not, create folder
+            var objTrue: ObjCBool = true
+            if !fileManager.fileExists(atPath: uploadFolderURL.path, isDirectory: &objTrue) {
+                try fileManager.createDirectory(at: uploadFolderURL, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            // Delete existing upload file
+            if fileManager.fileExists(atPath: uploadFileURL.path) {
+                try fileManager.removeItem(at: uploadFileURL)
+            }
+            
+            //  Move log file
+            try fileManager.moveItem(at: fileURL, to: uploadFileURL)
+            
+        } catch (let error) {
+            destination.owner?.error("An error occured during file operations. \(error)")
+            return nil
+        }
+        
+        // Open file
+        destination.openFile()
+        // Write all waiting logs
+        destination.flush()
+        
+        return uploadFileURL
     }
 }

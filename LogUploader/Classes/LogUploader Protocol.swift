@@ -14,9 +14,6 @@ public typealias UploadableFileDestination = Uploadable & CustomFileDestination
 /// Use `UploadableFileDestination` for your custom destinations since it inherits from
 /// `CustomFileDestination` as well
 public protocol Uploadable {
-    /// Method that handles the operations of logfile to prepare it for uploading
-    /// - Returns: URL of the file that'll be uploaded.
-    func moveForUpload() -> URL?
     /// Configuration struct that holds the upload settings
     var uploaderConfiguration: LogUploaderConfiguration? { get set }
     /// URL of the folder uploads will be saved to
