@@ -49,9 +49,64 @@ public class JSONDestination: UploadableFileDestination {
         }
     }
     
+    /// Finalize file and make it ready for operations i.e. upload
+    override open func finalize() -> Bool {
+        // Get the file handler
+        guard let logFileHandle = self.logFileHandle else {
+                owner?.error("Finalization for destination \(identifier) failed! FileHandler could not be found.")
+                return false
+        }
+        
+        // Create a LogDetails object that states the beginning of finalization
+        let logDetails = LogDetails(level: .debug, date: Date(), message: "Finalizing LogFile of \(identifier)", functionName: #function, fileName: #file, lineNumber: #line)
+        // Create a codable Log object with LogDetails
+        let log = Log(logDetails)
+        // Initialize and setup the JSONEncoder
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .secondsSince1970
+        
+        do {
+            // Synchronize file to prevent queued interventions
+            logFileHandle.synchronizeFile()
+            // Seek to the beginning of the file
+            logFileHandle.seek(toFileOffset: 0)
+            // Try and get contents of the file as String
+            let text = try String(contentsOf: fileURL)
+            
+            // Add array starting literal at the beginning of the string
+            guard let contentData = "[\(text)".data(using: .utf8),
+                // Get array ending literal as data
+                let arrayEnding = "]".data(using: .utf8) else {
+                    owner?.error("Finalization for destination \(identifier) failed!")
+                    return false
+            }
+            
+            // Seek to the beginning of the file
+            logFileHandle.seek(toFileOffset: 0)
+            // Write the altered contents string
+            logFileHandle.write(contentData)
+            
+            // Encode and write the new log data
+            let logData = try jsonEncoder.encode(log)
+            logFileHandle.write(logData)
+            // Write the array ending literal
+            logFileHandle.write(arrayEnding)
+            
+            // Close file and stop incoming logs
+            closeFile()
+            
+            return true
+            
+        } catch (let error) {
+            owner?.error("Exception occured while trying to finalize logfile \(identifier). Reason: \(error)")
+            return false
+        }
+        
+        
+    }
+    
     public func prepareForUpload() -> URL? {
-        // Close file to prevent conflicts
-        self.closeFile()
+        
         let fileManager = FileManager()
         guard fileManager.fileExists(atPath: fileURL.path) else {
             // File or url doesn't exist
@@ -59,16 +114,16 @@ public class JSONDestination: UploadableFileDestination {
         }
         
         // Get the home url of our logger
-        guard let homeURL = self.uploaderConfiguration?.uploader.homeURL else {
+        guard let homeURL = uploaderConfiguration?.uploader.homeURL else {
             // Home folder URL isn't present
             return nil
         }
         
         // Set URL of upload file folder
-        let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
+        let uploadFolderURL = homeURL.appendingPathComponent("\(identifier)", isDirectory: true)
         // Name of the file should be the current date in Apple's format
         let date = Date().timeIntervalSince1970
-        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(self.defaultFileExtension)", isDirectory: true)
+        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(defaultFileExtension)", isDirectory: true)
         
         do {
             // Check if destination exist and if not, create folder
@@ -86,14 +141,14 @@ public class JSONDestination: UploadableFileDestination {
             try fileManager.moveItem(at: fileURL, to: uploadFileURL)
             
         } catch (let error) {
-            self.owner?.error("An error occured during file operations. \(error)")
+            owner?.error("An error occured during file operations. \(error)")
             return nil
         }
         
         // Open file
-        self.openFile()
+        openFile()
         // Write all waiting logs
-        self.flush()
+        flush()
         
         return uploadFileURL
     }

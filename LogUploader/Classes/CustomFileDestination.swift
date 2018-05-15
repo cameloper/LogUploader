@@ -77,6 +77,7 @@ open class CustomFileDestination: StructDestination {
         
         do {
             logFileHandle = try FileHandle(forWritingTo: fileURL)
+            
         } catch let error {
             owner.error("Unable to open file at path \(fileURL.path). Reason: \(error)")
         }
@@ -87,6 +88,12 @@ open class CustomFileDestination: StructDestination {
         logFileHandle?.synchronizeFile()
         logFileHandle?.closeFile()
         logFileHandle = nil
+    }
+    
+    /// Finalize file and make it ready for operations i.e. upload
+    open func finalize() -> Bool {
+        // Override and do operations
+        return false
     }
     
     /// Force any buffered data to be written to the file.

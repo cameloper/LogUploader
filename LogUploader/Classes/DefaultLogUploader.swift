@@ -29,7 +29,8 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         // Get the url of upload file which was moved
-        guard let uploadFileURL = destination.prepareForUpload() else {
+        guard destination.finalize(),
+            let uploadFileURL = destination.prepareForUpload() else {
             completion?(.failure(.logFileError))
             return
         }
