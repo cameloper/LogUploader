@@ -15,7 +15,7 @@ extension XCGLogger {
     /// - Returns: Boolean: Is cleanup successful
     public func deleteAllLogFiles() -> Bool {
         // Get all Custom File Destinations
-        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        let destinations = self.destinations.compactMap { $0 as? UploadableFileDestination }
         let uploaderFolders = destinations.compactMap { $0.uploadFolderURL }
         
         // If empty, return false
@@ -32,7 +32,7 @@ extension XCGLogger {
     /// - Returns: Boolean: Cleanup is successful
     public func deleteSuccessfulLogFiles() -> Bool {
         // Get all Custom File Destinations
-        let destinations = self.destinations.compactMap { $0 as? CustomFileDestination }
+        let destinations = self.destinations.compactMap { $0 as? UploadableFileDestination }
         // Filter and get the ones that store successful uploads
         let destinationsStoringSuccessful = destinations.filter { $0.uploaderConfiguration?.storeSuccessfulUploads ?? false }
         // Get upload folder URLs

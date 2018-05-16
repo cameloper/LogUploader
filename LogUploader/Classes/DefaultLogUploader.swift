@@ -21,7 +21,7 @@ public struct DefaultLogUploader: LogUploader {
     }
     
     /// Begin the process of log uploading
-    public func upload(from destination: CustomFileDestination, completion: LogUploadCompletion?) {
+    public func upload(from destination: UploadableFileDestination, completion: LogUploadCompletion?) {
         // First get the configuration struct
         guard let conf = destination.uploaderConfiguration else {
             completion?(.failure(.missingConfiguration))
@@ -29,7 +29,8 @@ public struct DefaultLogUploader: LogUploader {
         }
         
         // Get the url of upload file which was moved
-        guard let uploadFileURL = destination.prepareFileForUpload() else {
+        guard destination.finalize(),
+            let uploadFileURL = moveForUpload(destination: destination) else {
             completion?(.failure(.logFileError))
             return
         }
@@ -81,7 +82,7 @@ public struct DefaultLogUploader: LogUploader {
     /// - Returns:
     ///     - true: The destination has failed logs that needs to be uploaded
     ///     - false: The destination has no failed logs that needs to be uploaded
-    func hasFailedLogs(_ destination: CustomFileDestination) -> Bool {
+    func hasFailedLogs(_ destination: UploadableFileDestination) -> Bool {
         // Get the base URL of destination and the failed folder URL
         let destURL = homeURL.appendingPathComponent(destination.identifier, isDirectory: true)
         let failedURL = destURL.appendingPathComponent("failed")
@@ -150,7 +151,7 @@ public struct DefaultLogUploader: LogUploader {
     /// - Parameters:
     ///     - destination: The CustomFileDestination we'll upload the logs from
     ///     - completion: Completion closure that passes the results
-    public func uploadFailedLogs(from destination: CustomFileDestination, completion: LogUploadsCompletion?) {
+    public func uploadFailedLogs(from destination: UploadableFileDestination, completion: LogUploadsCompletion?) {
         // Get the configuration
         guard let conf = destination.uploaderConfiguration else {
             completion?([LUResult(destinationId: destination.identifier, logFileName: nil, result: .failure(.missingConfiguration))])
@@ -251,33 +252,23 @@ public struct DefaultLogUploader: LogUploader {
         
         return urlRequest
     }
-}
-
-/// Extension to handle the file operation DefaultLogUploader requires
-extension CustomFileDestination {
     
-    /// Move the file to a new location before starting the upload
-    /// to allow new logs to be written during upload process
-    open func prepareFileForUpload() -> URL? {
-        // Close file to prevent conflicts
-        self.closeFile()
+    /// Method that handles the operations of logfile to prepare it for uploading
+    /// - Returns: URL of the file that'll be uploaded.
+    public func moveForUpload(destination: UploadableFileDestination) -> URL? {
+        let fileURL = destination.fileURL
         let fileManager = FileManager()
-        guard fileManager.fileExists(atPath: fileURL.path) else {
+        guard fileManager.fileExists(atPath: fileURL.path),
+            let uploaderConfiguration = destination.uploaderConfiguration else {
             // File or url doesn't exist
             return nil
         }
         
-        // Get the home url of our logger
-        guard let homeURL = self.uploaderConfiguration?.uploader.homeURL else {
-            // Home folder URL isn't present
-            return nil
-        }
-        
-        // Set URL of upload file folder
-        let uploadFolderURL = homeURL.appendingPathComponent("\(self.identifier)", isDirectory: true)
-        // Name of the file should be the current date in Apple's format
+        let homeURL = uploaderConfiguration.uploader.homeURL
+        let uploadFolderURL = homeURL.appendingPathComponent("\(destination.identifier)", isDirectory: true)
+        // Name of the file should be the current date in Unix Timestamp format
         let date = Date().timeIntervalSince1970
-        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(self.defaultFileExtension)", isDirectory: true)
+        let uploadFileURL = uploadFolderURL.appendingPathComponent("\(date).\(destination.defaultFileExtension)", isDirectory: true)
         
         do {
             // Check if destination exist and if not, create folder
@@ -295,14 +286,14 @@ extension CustomFileDestination {
             try fileManager.moveItem(at: fileURL, to: uploadFileURL)
             
         } catch (let error) {
-            self.owner?.error("An error occured during file operations. \(error)")
+            destination.owner?.error("An error occured during file operations. \(error)")
             return nil
         }
         
         // Open file
-        self.openFile()
+        destination.openFile()
         // Write all waiting logs
-        self.flush()
+        destination.flush()
         
         return uploadFileURL
     }

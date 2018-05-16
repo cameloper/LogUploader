@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     func logMsg(text: String) {
-        log.debug(txtNewLog.text)
+        log.debug(text)
         txtLogs.text = "\(txtLogs.text ?? "")\n>\(text)"
     }
     @IBAction func uploadFailed(_ sender: Any) {
@@ -52,11 +52,11 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func cleanall(_ sender: Any) {
-        log.deleteAllLogFiles()
+        _ = log.deleteAllLogFiles()
     }
     
     @IBAction func cleans(_ sender: Any) {
-        log.deleteSuccessfulLogFiles()
+        _ = log.deleteSuccessfulLogFiles()
     }
     
 }
