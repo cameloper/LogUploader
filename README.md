@@ -83,12 +83,6 @@ For more info please visit [XCGLogger documentation](https://github.com/DaveWood
 ### Uploading logs
 
 If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-uploader-configuration) you can upload your logs as easy as logging. Just type `log.uploadLogs()` to uploads logs of every available `UploadableFileDestination`'s or `log.uploadLogs(for: 'destinationId')` to upload logs of a single destination. You can also get the results in a completion closure.
- 
-<!--## Advanced Configuration
-
-<!--### Log Uploader Configuration
-
-<!--#### Log Upload Configuration
 
 ## Contributing
 
