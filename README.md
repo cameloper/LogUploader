@@ -34,6 +34,28 @@ We appreciate any kind of contribution!
 <!--pod 'LogUploader'-->
 <!--```-->
 
+## Usage
+
+### Setting up XCGLogger
+
+The following is a basic setup of XCGLogger without any destinations added. For more information please visit [here](https://github.com/DaveWoodCom/XCGLogger/blob/master/README.md#basic-usage-quick-start)
+```swift
+let log: XCGLogger = {
+    let log = XCGLogger(identifier: "advancedLogger", includeDefaultDestinations: false) // Init without default destinations
+
+	// The destination setups will come here
+    
+    return log
+}()
+```
+### JSON Destination
+
+#### Destination? What?
+
+XCGLogger works with destinations and the destinations handle what should be done with the logs. LogUploader has its own destnation superclass `CustomFileDestination`. It passes the the arguments of a log as a codable struct which helps by creating data interchange files. 
+
+The default file destination that is included by now is `JSONDestination`. It saves the logs in a JSON which is one of the most used human-readable data interchange file formats.
+
 ## Contributing
 
 - Create an issue
