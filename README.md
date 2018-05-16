@@ -34,15 +34,16 @@ We appreciate any kind of contribution!
 <!--pod 'LogUploader'-->
 <!--```-->
 
-## Usage
+## Basic Usage
 
 ### Setting up XCGLogger
 
-The following is a basic setup of XCGLogger without any destinations added. For more information please visit [here](https://github.com/DaveWoodCom/XCGLogger/blob/master/README.md#basic-usage-quick-start)
+The following is a basic setup of XCGLogger with a console destination added as default. For more information please visit [here](https://github.com/DaveWoodCom/XCGLogger/blob/master/README.md#basic-usage-quick-start)
 ```swift
 let log: XCGLogger = {
-    let log = XCGLogger(identifier: "advancedLogger", includeDefaultDestinations: false) // Init without default destinations
-
+    let log = XCGLogger.default
+    
+    log.setup(level: .debug, showFunctionName: false, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true)
 	// The destination setups will come here
     
     return log
@@ -55,6 +56,23 @@ let log: XCGLogger = {
 XCGLogger works with destinations and the destinations handle what should be done with the logs. LogUploader has its own destnation superclass `CustomFileDestination`. It passes the the arguments of a log as a codable struct which helps by creating data interchange files. 
 
 The default file destination that is included by now is `JSONDestination`. It saves the logs in a JSON which is one of the most used human-readable data interchange file formats.
+
+#### Adding a JSONDestination to the XCGLogger
+
+Initializing a JSON Destination and adding it to XCGLogger is pretty easy. Here's an example with log uploader configurations
+```swift
+// The following 2 lines are for log uploading. If you just want to save your logs as 
+// a JSON file, these lines are not necessary
+let logUploadConf = LogUploadConfiguration(requestURL: requestURL) // URL of the HTTP server
+let logUploaderConf = LogUploaderConfiguration(uploader: DefaultLogUploader(), uploadConf: logUploadConf)
+
+let jsonDestination = JSONDestination(owner: log, // XCGLogger object. `log` if you used the basic setup above
+				      fileURL: logFileURL, // Where to save the JSON file
+				      identifier: "logger.jsonLogger", // An unique id for the destination
+				      uploaderConf: logUploaderConf) // Also for log upload. Can be omitted
+				      
+log.add(destination: jsonDestination)
+```
 
 ## Contributing
 
