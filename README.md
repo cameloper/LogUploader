@@ -74,6 +74,22 @@ let jsonDestination = JSONDestination(owner: log, // XCGLogger object. `log` if 
 log.add(destination: jsonDestination)
 ```
 
+### Logging
+
+Now that JSON destination is registered in XCGLogger, any logs that are written using XCGLogger will be saved in the JSON file. To log anywhere in your code, simply type `log.LEVEL` where level can be i.e. `debug`, `info`, `error` etc.
+
+For more info please visit [XCGLogger documentation](https://github.com/DaveWoodCom/XCGLogger#basic-usage-quick-start)
+
+### Uploading logs
+
+If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-uploader-configuration) you can upload your logs as easy as logging. Just type `log.uploadLogs()` to uploads logs of every available `UploadableFileDestination`'s or `log.uploadLogs(for: 'destinationId')` to upload logs of a single destination. You can also get the results in a completion closure.
+ 
+<!--## Advanced Configuration
+
+<!--### Log Uploader Configuration
+
+<!--#### Log Upload Configuration
+
 ## Contributing
 
 - Create an issue
