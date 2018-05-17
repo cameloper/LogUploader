@@ -125,6 +125,8 @@ Dictionary for the body of the request. The following values are default;
 2. Simply clone the project and solve the issue on a new branch
 3. Create a pull request
 
+See [CONTRIBUTING.md](https://github.com/cameloper/LogUploader/blob/master/CONTRIBUTING.md) for commit message guide
+
 Thank's in advance :)
 
 ## Author
