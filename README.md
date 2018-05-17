@@ -102,11 +102,11 @@ If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogU
 `LogUploadConfiguration` is the struct that holds the required networking etc. settings for an upload operation. The following settings are available;
 
 - requestURL: `URL` - The URL for the POST request
-- parameters: [```swift [String: Any]```](https://github.com/cameloper/LogUploader#request-parameters)
+- parameters: [`[String: Any]`](https://github.com/cameloper/LogUploader#request-parameters)
 - paramterEncoding: `ParameterEncoding` (from Alamofire) - Encoding type for the POST parameters. i.e. `.JSON`
-- headers: ```swift (() -> [String: String])?``` - Closure that should return the HTTP request headers. Will be executed for each upload operation. (Put your sensitive/dynamic data like credentials or sync tokens here)
+- headers: `(() -> [String: String])?` - Closure that should return the HTTP request headers. Will be executed for each upload operation. (Put your sensitive/dynamic data like credentials or sync tokens here)
 
-###### Request Parameters
+##### Request Parameters
 
 Dictionary for the body of the request. The following values are default;
 
