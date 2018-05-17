@@ -121,9 +121,9 @@ Dictionary for the body of the request. The following values are default;
 
 ## Contributing
 
-- Create an issue
-- Simply clone the project and solve the issue on a new branch
-- Create a pull request
+1. Create an issue
+2. Simply clone the project and solve the issue on a new branch
+3. Create a pull request
 
 Thank's in advance :)
 
