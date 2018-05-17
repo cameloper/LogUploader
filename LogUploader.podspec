@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LogUploader'
-  s.version          = '0.2.1'
+  s.version          = '1.0.0'
   s.summary          = 'Upload your XCGLogger logs to your own server easily!'
 
 # This description is used to generate tags and improve search results.
