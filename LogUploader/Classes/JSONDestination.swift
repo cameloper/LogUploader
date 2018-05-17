@@ -12,9 +12,7 @@ import XCGLogger
 public class JSONDestination: UploadableFileDestination {
     
     public var uploaderConfiguration: LogUploaderConfiguration?
-    
     public var uploadFolderURL: URL?
-    
     
     public required init(owner: XCGLogger?, fileURL: URL, identifier: String, uploaderConf: LogUploaderConfiguration?, uploadFolderURL: URL? = nil) {
         // Initialize superclass

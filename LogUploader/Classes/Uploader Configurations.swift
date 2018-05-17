@@ -60,7 +60,7 @@ public struct LogUploadConfiguration {
 
 /// Struct that holds the preferences for uploader
 public struct LogUploaderConfiguration {
-    /// Identifier of the uploader that will be used for the operation.
+    /// An instance of the uploader that will be used for the operation.
     var uploader: LogUploader
     /// Upload configuration that will be used to generate a valid
     /// HTTP POST request.
@@ -79,7 +79,7 @@ public struct LogUploaderConfiguration {
     /// - default value: `false`
     var storeSuccessfulUploads: Bool
     
-    public init(uploader: LogUploader,
+    public init(uploader: LogUploader = DefaultLogUploader(),
                 uploadConf: LogUploadConfiguration,
                 storeFailedUploads: Bool = true,
                 autoRetryFailedUploads: Bool = true,

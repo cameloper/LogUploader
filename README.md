@@ -2,15 +2,12 @@
 
 [![CI Status](http://img.shields.io/travis/cameloper/LogUploader.svg?style=flat)](https://travis-ci.org/cameloper/LogUploader)
 ![Status](https://img.shields.io/badge/status-early%20development-yellow.svg)
+![Swift Version](https://img.shields.io/badge/swift%20version-4.1-red.svg)
 <!--[![Version](https://img.shields.io/cocoapods/v/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
 <!--[![License](https://img.shields.io/cocoapods/l/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
 <!--[![Platform](https://img.shields.io/cocoapods/p/LogUploader.svg?style=flat)](http://cocoapods.org/pods/LogUploader)-->
 
-LogUploader helps you upload your logs to your own server using HTTP POST. If you already use [XCGLogger](https://github.com/DaveWoodCom/XCGLogger), all you need to do is to create and add a `JSONDestination` and a `LogUploaderConfiguration` then it's ready! Check out the example project if you want. ([SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver) configuration is also similar with XCGLogger so you can switch without a big effort)
-
-More file formats will be added in the future. But if you don't want to wait, you can add your own destination as well. Just create a subclass of `CustomFileDestination`.
-
-There will be a documentation with the release of CocaPods too.
+LogUploader helps you upload your logs to your own server using HTTP POST. If you already use [XCGLogger](https://github.com/DaveWoodCom/XCGLogger), the setup is pretty easy! Check out the documentation below and the example project if you want. ([SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver) configuration is also similar with XCGLogger so you can switch without a big effort)
 
 ## Example
 
@@ -21,10 +18,14 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 - XCGLogger
 - Alamofire
 
+The requirements are added as pod dependencies. You won't have to install them manually.
+
 ## Installation
 
-LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'`, then add `source 'https://github.com/cameloper/LogUploader'
-` and `pod 'LogUploader'` in your Podfile.
+LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'`, then add ```ruby
+source 'https://github.com/cameloper/LogUploader'
+``` and ```ruby
+pod 'LogUploader'``` in your Podfile.
 
 We appreciate any kind of contribution!
 <!--LogUploader is available through [CocoaPods](http://cocoapods.org). To install-->
@@ -83,6 +84,40 @@ For more info please visit [XCGLogger documentation](https://github.com/DaveWood
 ### Uploading logs
 
 If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-uploader-configuration) you can upload your logs as easy as logging. Just type `log.uploadLogs()` to uploads logs of every available `UploadableFileDestination`'s or `log.uploadLogs(for: 'destinationId')` to upload logs of a single destination. You can also get the results in a completion closure.
+
+## Advanced usage
+
+### Log Uploader Configuration
+
+`LogUploaderConfiguration` is the struct that holds the settings for the desired Log Uploader. The following settings are available;
+
+- uploader: `LogUploader` - An instance of your desired log uploader. i.e. `DefaultLogUploder`
+- uploadConfiguration: [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-upload-configuration)
+- storeSuccessfulUploads: `Bool` - Boolean that decides if the successful log uploads should be stored in the device until they get manually deleted.
+- storeFailedUploads: `Bool` - Boolean that decides if the failed log uploads should be stored in the device until they get successfuly uploaded.
+- autoRetryFailedUploads: `Bool` - Boolean that decides if the failed and stored uploads should be automatically retried to upload after next successful upload.
+
+#### Log Upload Configuration
+
+`LogUploadConfiguration` is the struct that holds the required networking etc. settings for an upload operation. The following settings are available;
+
+- requestURL: `URL` - The URL for the POST request
+- parameters: [```swift [String: Any]```](https://github.com/cameloper/LogUploader#request-parameters)
+- paramterEncoding: `ParameterEncoding` (from Alamofire) - Encoding type for the POST parameters. i.e. `.JSON`
+- headers: ```swift (() -> [String: String])?``` - Closure that should return the HTTP request headers. Will be executed for each upload operation. (Put your sensitive/dynamic data like credentials or sync tokens here)
+
+###### Request Parameters
+
+Dictionary for the body of the request. The following values are default;
+
+- UUID
+- Device model
+- Device name
+- System name
+- System version
+- App version
+- App build version
+- Logs
 
 ## Contributing
 
