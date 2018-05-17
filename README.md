@@ -62,7 +62,7 @@ let log: XCGLogger = {
 
 XCGLogger works with destinations and the destinations handle what should be done with the logs. LogUploader has its own destnation superclass `CustomFileDestination`. It passes the the arguments of a log as a codable struct which helps by creating data interchange files. 
 
-The default file destination that is included by now is `JSONDestination`. It saves the logs in a JSON which is one of the most used human-readable data interchange file formats.
+The default file destination that is included by now is `JSONDestination`. It saves the logs in a JSON file which is one of the most used human-readable data interchange file formats.
 
 #### Adding a JSONDestination to the XCGLogger
 
@@ -83,13 +83,35 @@ log.add(destination: jsonDestination)
 
 ### Logging
 
-Now that JSON destination is registered in XCGLogger, any logs that are written using XCGLogger will be saved in the JSON file. To log anywhere in your code, simply type `log.LEVEL` where level can be i.e. `debug`, `info`, `error` etc.
+Now that JSON destination is registered in XCGLogger, any logs that are written using XCGLogger will be saved in the JSON file. To log anywhere in your code, simply type `log.LEVEL(MESSAGE)` where level can be `debug`, `info`, `error` etc. and message can be **anything**
 
 For more info please visit [XCGLogger documentation](https://github.com/DaveWoodCom/XCGLogger#basic-usage-quick-start)
 
 ### Uploading logs
 
-If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-uploader-configuration) you can upload your logs as easy as logging. Just type `log.uploadLogs()` to uploads logs of every available `UploadableFileDestination`'s or `log.uploadLogs(for: 'destinationId')` to upload logs of a single destination. You can also get the results in a completion closure.
+If you have a valid [`LogUploadConfiguration`](https://github.com/cameloper/LogUploader#log-uploader-configuration) you can upload your logs as easy as logging. Just type 
+```swift
+log.uploadLogs()
+```
+to uploads logs of every available `UploadableFileDestination`'s or 
+```swift
+log.uploadLogs(for: 'destinationId')
+```
+to upload logs of a single destination. You can also get the results in a completion closure.
+
+### Cleaning Logs
+
+If you are storing the logfiles after an upload (look [here](https://github.com/cameloper/LogUploader#log-uploader-configuration)) you might (and most probably will) want to delete them after a while. There are two options for deleting the logs;
+
+- To delete successfully uploaded logfiles:
+```swift
+log.deleteAllLogFiles()
+```
+
+- To delete all logfiles (except the currently open one):
+```swift
+log.deleteSuccessfulLogFiles()
+```
 
 ## Advanced usage
 
