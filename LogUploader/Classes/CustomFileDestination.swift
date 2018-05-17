@@ -63,19 +63,22 @@ open class CustomFileDestination: StructDestination {
             return
         }
         
-        // Make sure that the logfile is not present
+        // Make sure that the file handler is not present
         if logFileHandle != nil {
             closeFile()
         }
         
+        // Initialize the file manager
         let fileManager = FileManager.default
         let fileExists = fileManager.fileExists(atPath: fileURL.path)
         
+        // If the log file does not exist, create it
         if !fileExists {
             fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
         }
         
         do {
+            // Initialize the file handler
             logFileHandle = try FileHandle(forWritingTo: fileURL)
             
         } catch let error {
@@ -104,8 +107,8 @@ open class CustomFileDestination: StructDestination {
                 self.logFileHandle?.synchronizeFile()
                 closure?()
             }
-        }
-        else {
+        } else {
+            // If the log queue is not present, just sync the file handler
             logFileHandle?.synchronizeFile()
             closure?()
         }

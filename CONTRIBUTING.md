@@ -22,5 +22,12 @@
 
 * S : CodeStyle without functional effect (e.g. adding comments)
 
+* D : Documentation (e.g. upadated README.md)
 
-#### I.E.: [F, #2] add new viewcontroller to display news
+* PR : Changes in project settings
+
+* GT : Commits that do not include any code but rather changes to fix something in git
+
+
+#### I.E.: [F, #2] Added variables for storing settings
+
