@@ -22,10 +22,7 @@ The requirements are added as pod dependencies. You won't have to install them m
 
 ## Installation
 
-LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'`, then add ```ruby
-source 'https://github.com/cameloper/LogUploader'
-``` and ```ruby
-pod 'LogUploader'``` in your Podfile.
+LogUploder is currently in development but you can still install it with CocoaPods. Just execute `pod repo add cameloperPodspec 'https://github.com/cameloper/Podspec'`, then add `source 'https://github.com/cameloper/LogUploader'` and `pod 'LogUploader'` in your Podfile.
 
 We appreciate any kind of contribution!
 <!--LogUploader is available through [CocoaPods](http://cocoapods.org). To install-->
