@@ -32,7 +32,7 @@ open class CustomFileDestination: StructDestination {
     }
     
     /// Default extension of the file logs will be saved in
-    open let defaultFileExtension: String
+    public let defaultFileExtension: String
     
     /// File handle for the log file
     open var logFileHandle: FileHandle? = nil

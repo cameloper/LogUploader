@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LogUploader'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Upload your XCGLogger logs to your own server easily!'
 
 # This description is used to generate tags and improve search results.
@@ -43,6 +43,6 @@ Visit GitHub page for tutorial and examples.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'XCGLogger', '~> 6.0.2'
-  s.dependency 'Alamofire', '~> 4.7.2'
+  s.dependency 'XCGLogger', '~> 7.0.0'
+  s.dependency 'Alamofire', '~> 4.8.1'
 end
