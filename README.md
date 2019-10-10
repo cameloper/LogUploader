@@ -157,7 +157,7 @@ Dictionary for the body of the request. The following values are default;
 
 See [CONTRIBUTING.md](https://github.com/cameloper/LogUploader/blob/master/CONTRIBUTING.md) for commit message guide
 
-Thank's in advance :)
+Thank's for your contribution :)
 
 ## Author
 
